@@ -18,7 +18,7 @@ export default function AdminImportPanel({ hasSupabase }) {
       return;
     }
 
-    setStatus(`Import selesai. Bank: ${payload.bank.title}, soal: ${payload.questionCount}.`);
+    setStatus(`Import selesai. Mata kuliah: ${payload.importedCount}, soal: ${payload.questionCount}.`);
     setBusy(false);
   }
 
@@ -30,7 +30,7 @@ export default function AdminImportPanel({ hasSupabase }) {
       </div>
       <p className="muted">
         {hasSupabase
-          ? 'Tombol ini akan membaca file bank-soal-rpl-online.md lalu mengisi question_banks, questions, options, dan exams.'
+          ? 'Tombol ini akan membaca file bank soal Markdown yang terdaftar lalu mengisi question_banks, questions, options, dan exams.'
           : 'Supabase belum dikonfigurasi. Jalankan import setelah env variable diisi.'}
       </p>
       <button className="button primary" onClick={handleImport} disabled={busy || !hasSupabase}>
@@ -40,4 +40,3 @@ export default function AdminImportPanel({ hasSupabase }) {
     </section>
   );
 }
-

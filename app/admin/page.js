@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getSessionUser, isAdmin } from '../../lib/auth.js';
-import { getSummary, listAdminAttempts } from '../../lib/storage.js';
+import { getExamList, getSummary, listAdminAttempts } from '../../lib/storage.js';
 import { hasSupabaseConfig } from '../../lib/supabase.js';
 import AdminDeleteAttemptButton from '../../components/admin-delete-attempt-button.jsx';
 
 export const dynamic = 'force-dynamic';
 
-export default async function AdminPage() {
+export default async function AdminPage({ searchParams }) {
   const user = getSessionUser();
   if (!user) {
     redirect('/login');
@@ -16,7 +16,12 @@ export default async function AdminPage() {
     redirect('/exams');
   }
 
-  const [summary, attempts] = await Promise.all([getSummary(), listAdminAttempts()]);
+  const selectedExamId = typeof searchParams?.examId === 'string' ? searchParams.examId : '';
+  const [summary, exams, attempts] = await Promise.all([getSummary(), getExamList(), listAdminAttempts()]);
+  const filteredAttempts = selectedExamId
+    ? attempts.filter((attempt) => attempt.exam_id === selectedExamId)
+    : attempts;
+  const examMap = new Map(exams.map((exam) => [exam.id, exam]));
 
   return (
     <section>
@@ -43,6 +48,28 @@ export default async function AdminPage() {
         </a>
       </div>
 
+      <div className="panel" style={{ marginTop: 18 }}>
+        <span className="eyebrow">Filter Mata Kuliah</span>
+        <form method="get" className="field-grid" style={{ marginTop: 12 }}>
+          <label className="field">
+            <span>Mata Kuliah</span>
+            <select name="examId" defaultValue={selectedExamId}>
+              <option value="">Semua mata kuliah</option>
+              {exams.map((exam) => (
+                <option key={exam.id} value={exam.id}>
+                  {exam.course_name || exam.title}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="stack" style={{ justifyContent: 'end' }}>
+            <button className="button primary" type="submit">
+              Tampilkan
+            </button>
+          </div>
+        </form>
+      </div>
+
       <div className="section-grid" style={{ marginTop: 18 }}>
         <div className="metric">
           <span>Peserta</span>
@@ -64,6 +91,7 @@ export default async function AdminPage() {
           <table className="admin-table">
             <thead>
               <tr>
+                <th>Mata Kuliah</th>
                 <th>NIM</th>
                 <th>Nama</th>
                 <th>WhatsApp</th>
@@ -74,25 +102,29 @@ export default async function AdminPage() {
               </tr>
             </thead>
             <tbody>
-              {attempts.length > 0 ? (
-                attempts.map((attempt) => (
-                  <tr key={attempt.id}>
-                    <td>{attempt.nim}</td>
-                    <td>{attempt.student_name}</td>
-                    <td>{attempt.whatsapp}</td>
-                    <td>
-                      {attempt.progress_question_number}/{attempt.total_questions} ({attempt.current_page})
-                    </td>
-                    <td>{attempt.score ?? 0}</td>
-                    <td>{attempt.status}</td>
-                    <td className="table-action-cell">
-                      <AdminDeleteAttemptButton attemptId={attempt.id} studentName={attempt.student_name} />
-                    </td>
-                  </tr>
-                ))
+              {filteredAttempts.length > 0 ? (
+                filteredAttempts.map((attempt) => {
+                  const exam = examMap.get(attempt.exam_id);
+                  return (
+                    <tr key={attempt.id}>
+                      <td>{exam?.course_name || exam?.title || attempt.exam_id}</td>
+                      <td>{attempt.nim}</td>
+                      <td>{attempt.student_name}</td>
+                      <td>{attempt.whatsapp}</td>
+                      <td>
+                        {attempt.progress_question_number}/{attempt.total_questions} ({attempt.current_page})
+                      </td>
+                      <td>{attempt.score ?? 0}</td>
+                      <td>{attempt.status}</td>
+                      <td className="table-action-cell">
+                        <AdminDeleteAttemptButton attemptId={attempt.id} studentName={attempt.student_name} />
+                      </td>
+                    </tr>
+                  );
+                })
               ) : (
                 <tr>
-                  <td colSpan="7">Belum ada data peserta.</td>
+                  <td colSpan="8">Belum ada data peserta.</td>
                 </tr>
               )}
             </tbody>

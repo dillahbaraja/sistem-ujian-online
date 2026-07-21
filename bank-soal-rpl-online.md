@@ -1,9 +1,9 @@
-# Ujian Online RPL Semester II
+# UAS Rekayasa Perangkat Lunak Semester II
 
 **Program Studi:** Teknik Informatika  
 **Fakultas:** Teknik Elektro dan Informatika  
 **Universitas:** Universitas Surakarta  
-**Mata Kuliah:** Rekayasa Perangkat Lunak  
+**Mata Kuliah:** UAS Rekayasa Perangkat Lunak Semester II  
 **Target:** Mahasiswa Semester II  
 
 ## Petunjuk Umum

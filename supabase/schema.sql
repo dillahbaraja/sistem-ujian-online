@@ -28,6 +28,7 @@ create table if not exists public.question_banks (
   id uuid primary key default gen_random_uuid(),
   slug text not null unique,
   title text not null,
+  course_name text not null default '',
   description text not null default '',
   source_path text not null default '',
   total_questions integer not null default 0,
@@ -39,6 +40,7 @@ create table if not exists public.exams (
   id uuid primary key default gen_random_uuid(),
   slug text not null unique,
   title text not null,
+  course_name text not null default '',
   description text not null default '',
   duration_minutes integer not null default 60,
   shuffle_questions boolean not null default true,
@@ -124,3 +126,6 @@ alter table public.questions enable row level security;
 alter table public.options enable row level security;
 alter table public.attempts enable row level security;
 alter table public.attempt_answers enable row level security;
+
+alter table public.question_banks add column if not exists course_name text not null default '';
+alter table public.exams add column if not exists course_name text not null default '';

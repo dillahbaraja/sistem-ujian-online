@@ -19,10 +19,9 @@ export default function ImportPage() {
       <span className="eyebrow">Import Data</span>
       <h1>Import bank soal Markdown</h1>
       <p className="muted">
-        File bank soal lokal akan diparsing, lalu disimpan ke question_banks, questions, options, dan exams.
+        File bank soal lokal yang terdaftar akan diparsing, lalu disimpan ke question_banks, questions, options, dan exams.
       </p>
       <AdminImportPanel hasSupabase={hasSupabaseConfig()} />
     </section>
   );
 }
-

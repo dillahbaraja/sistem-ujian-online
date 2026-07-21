@@ -126,7 +126,7 @@ export default function ExamRunner({ examId }) {
     <section className="exam-shell">
       <aside className="exam-sidebar panel">
         <span className="eyebrow">Sesi Ujian</span>
-        <h1>{attempt?.exam?.title ?? 'Ujian'}</h1>
+        <h1>{attempt?.exam?.course_name || attempt?.exam?.title || 'Ujian'}</h1>
         <p>{attempt?.exam?.description}</p>
 
         <div className="timer-box">
@@ -175,4 +175,3 @@ export default function ExamRunner({ examId }) {
     </section>
   );
 }
-

@@ -18,7 +18,7 @@ export default async function ResultPage({ params }) {
   return (
     <section className="result-card">
       <span className="eyebrow">Hasil Ujian</span>
-      <h1>{exam?.title ?? 'Ujian'}</h1>
+      <h1>{exam?.course_name || exam?.title || 'Ujian'}</h1>
       <p className="muted">Hasil langsung tampil setelah submit sesuai kebutuhan versi awal.</p>
 
       <div className="result-grid">

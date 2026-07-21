@@ -2,7 +2,7 @@ import Image from 'next/image';
 import './globals.css';
 
 export const metadata = {
-  title: 'Sistem Ujian Online RPL',
+  title: 'Sistem Ujian Online',
   description: 'Web ujian online berbasis Next.js, Supabase, dan Vercel.'
 };
 
@@ -11,10 +11,10 @@ export default function RootLayout({ children }) {
     <html lang="id">
       <body>
         <header className="topbar">
-          <div className="brand" aria-label="Ujian Online RPL">
+          <div className="brand" aria-label="Sistem Ujian Online">
             <span className="brand-mark" />
             <span className="brand-name">
-              <strong>Ujian Online RPL</strong>
+              <strong>Sistem Ujian Online</strong>
             </span>
           </div>
           <div className="topbar-sponsor" aria-label="Universitas Surakarta">

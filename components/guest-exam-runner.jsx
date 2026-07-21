@@ -84,7 +84,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
 
   const [page, setPage] = useState(attempt.current_page || 1);
   const [answers, setAnswers] = useState(initialAnswers || {});
-  const [theme, setTheme] = useState(attempt.theme || 'dark');
+  const [theme, setTheme] = useState(attempt.theme || 'light');
   const [now, setNow] = useState(Date.now());
   const [saving, setSaving] = useState(false);
   const [submitting, setSubmitting] = useState(false);

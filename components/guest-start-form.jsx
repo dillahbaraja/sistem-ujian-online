@@ -3,18 +3,23 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function GuestStartForm({ examId }) {
+export default function GuestStartForm({ exams = [], examId }) {
   const router = useRouter();
   const [nim, setNim] = useState('');
   const [studentName, setStudentName] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
+  const [selectedExamId, setSelectedExamId] = useState(examId ?? exams[0]?.id ?? '');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
+
+  useEffect(() => {
+    setSelectedExamId(examId ?? exams[0]?.id ?? '');
+  }, [examId, exams]);
 
   function handleThemeChange(nextTheme) {
     setTheme(nextTheme);
@@ -31,7 +36,13 @@ export default function GuestStartForm({ examId }) {
     }
 
     setLoading(true);
-    const response = await fetch(`/api/exams/${examId}/start`, {
+    if (!selectedExamId) {
+      setError('Silakan pilih mata kuliah terlebih dahulu.');
+      setLoading(false);
+      return;
+    }
+
+    const response = await fetch(`/api/exams/${selectedExamId}/start`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -56,6 +67,17 @@ export default function GuestStartForm({ examId }) {
   return (
     <form className="panel start-panel" onSubmit={handleStart}>
       <div className="field-grid">
+        <label className="field">
+          <span>Mata Kuliah</span>
+          <select value={selectedExamId} onChange={(event) => setSelectedExamId(event.target.value)}>
+            <option value="">Pilih mata kuliah</option>
+            {exams.map((exam) => (
+              <option key={exam.id} value={exam.id}>
+                {exam.course_name || exam.title}
+              </option>
+            ))}
+          </select>
+        </label>
         <label className="field">
           <span>NIM</span>
           <input value={nim} onChange={(event) => setNim(event.target.value)} placeholder="23012345" />
