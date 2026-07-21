@@ -1,17 +1,22 @@
 # Sistem Ujian Online
 
-Next.js + Supabase + Vercel web app for multiple exam banks in Markdown, including `bank-soal-rpl-online.md` and `bank-soal-pbo-java.md`.
+Web ujian online berbasis Next.js + Supabase + Vercel untuk beberapa mata kuliah. Saat ini bank soal Markdown yang didukung adalah:
+
+- `bank-soal-rpl-online.md` untuk `UAS Rekayasa Perangkat Lunak Semester II`
+- `bank-soal-pbo-java.md` untuk `UAS Pemrograman Berorientasi Objek Semester II`
 
 ## Fitur
 
 - Login mahasiswa dan admin
-- Daftar ujian
+- Pilih mata kuliah dari halaman beranda
+- Satu mahasiswa hanya bisa mengikuti ujian sekali per mata kuliah
 - Timer ujian
 - Shuffle soal dan opsi
 - Submit jawaban dan skor otomatis
 - Dashboard admin
 - Import bank soal Markdown ke Supabase
-- Dukungan beberapa mata kuliah dari beranda dan dashboard admin
+- Dashboard admin dengan filter mata kuliah untuk melihat peserta
+- Default tampilan light mode dengan kontras warna yang lebih tegas
 
 ## Jalankan lokal
 
@@ -39,7 +44,7 @@ SUPABASE_SERVICE_ROLE_KEY=...
 SESSION_SECRET=some-long-random-string
 ```
 
-6. Buka `/admin/import` lalu tekan import untuk mengisi semua bank soal Markdown yang terdaftar.
+6. Buka `/admin/import` lalu tekan import untuk menyinkronkan semua bank soal Markdown yang terdaftar ke `question_banks`, `exams`, `questions`, dan `options`.
 
 ## Deploy ke Vercel
 
