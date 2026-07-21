@@ -81,7 +81,10 @@ function RichText({ text }) {
             </pre>
           );
         } else {
-          const lines = part.split('\n');
+          const trimmedPart = part.replace(/^\n+|\n+$/g, '');
+          if (!trimmedPart) return null;
+
+          const lines = trimmedPart.split('\n');
           return lines.map((line, lineIndex) => {
             const content = renderTextWithInlineCode(line);
             return (
