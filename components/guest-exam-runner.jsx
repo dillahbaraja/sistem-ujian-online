@@ -34,6 +34,54 @@ function progressNumber(questions, answers, page) {
 
 export default function GuestExamRunner({ attempt, exam, questions, answers: initialAnswers }) {
   const router = useRouter();
+  const draftKey = `rpl-exam-draft:${attempt.id}`;
+  const [draftLoaded, setDraftLoaded] = useState(false);
+  const [draftState, setDraftState] = useState(null);
+
+  function readDraft() {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    try {
+      const raw = window.localStorage.getItem(draftKey);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function writeDraft(nextAnswers, nextPage, nextTheme) {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      window.localStorage.setItem(
+        draftKey,
+        JSON.stringify({
+          answers: nextAnswers,
+          page: nextPage,
+          theme: nextTheme
+        })
+      );
+    } catch {
+      // Ignore storage quota or privacy mode failures.
+    }
+  }
+
+  function clearDraft() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      window.localStorage.removeItem(draftKey);
+    } catch {
+      // Ignore storage failures.
+    }
+  }
+
   const [page, setPage] = useState(attempt.current_page || 1);
   const [answers, setAnswers] = useState(initialAnswers || {});
   const [theme, setTheme] = useState(attempt.theme || 'dark');
@@ -42,6 +90,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const saveTimer = useRef(null);
+  const saveQueue = useRef(Promise.resolve());
 
   useEffect(() => {
     const interval = window.setInterval(() => setNow(Date.now()), 1000);
@@ -55,6 +104,33 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
       root.dataset.theme = '';
     };
   }, [theme]);
+
+  useEffect(() => {
+    const draft = readDraft();
+    if (!draft) {
+      setDraftLoaded(true);
+      return;
+    }
+
+    setDraftState(draft);
+    setDraftLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!draftLoaded || !draftState) {
+      return;
+    }
+
+    if (draftState.answers) {
+      setAnswers(draftState.answers);
+    }
+    if (draftState.page) {
+      setPage(draftState.page);
+    }
+    if (draftState.theme) {
+      setTheme(draftState.theme);
+    }
+  }, [draftLoaded, draftState]);
 
   const remainingSeconds = useMemo(() => {
     if (!attempt?.ends_at) {
@@ -75,7 +151,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
     }
 
     saveTimer.current = window.setTimeout(() => {
-      void saveProgress();
+      void queueProgressSave();
     }, 500);
 
     return () => {
@@ -87,32 +163,46 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
   }, [answers, page, theme]);
 
   useEffect(() => {
+    writeDraft(answers, page, theme);
+  }, [answers, page, theme]);
+
+  useEffect(() => {
     if (remainingSeconds === 0 && allQuestionsAnswered && !submitting) {
       void handleSubmit();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [remainingSeconds, allQuestionsAnswered]);
 
-  async function saveProgress(nextAnswers = answers, nextPage = page, nextTheme = theme) {
+  async function persistProgress(nextAnswers = answers, nextPage = page, nextTheme = theme) {
     setSaving(true);
-    const response = await fetch(`/api/attempts/${attempt.id}/progress`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        answersByQuestionId: nextAnswers,
-        currentPage: nextPage,
-        progressQuestionNumber: progressNumber(questions, nextAnswers, nextPage),
-        answeredCount: countAnswered(nextAnswers),
-        totalQuestions: questions.length,
-        theme: nextTheme
-      })
-    });
+    writeDraft(nextAnswers, nextPage, nextTheme);
 
-    if (!response.ok) {
-      const payload = await response.json().catch(() => ({}));
-      setError(payload.message || 'Gagal menyimpan progres.');
+    try {
+      const response = await fetch(`/api/attempts/${attempt.id}/progress`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          answersByQuestionId: nextAnswers,
+          currentPage: nextPage,
+          progressQuestionNumber: progressNumber(questions, nextAnswers, nextPage),
+          answeredCount: countAnswered(nextAnswers),
+          totalQuestions: questions.length,
+          theme: nextTheme
+        })
+      });
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        setError(payload.message || 'Gagal menyimpan progres.');
+      }
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
+  }
+
+  function queueProgressSave(nextAnswers = answers, nextPage = page, nextTheme = theme) {
+    saveQueue.current = saveQueue.current.then(() => persistProgress(nextAnswers, nextPage, nextTheme));
+    return saveQueue.current;
   }
 
   function updateAnswer(questionId, label, type) {
@@ -130,7 +220,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
         }
         next[questionId] = [...existing];
       }
-      void saveProgress(next, page, theme);
+      void queueProgressSave(next, page, theme);
       return next;
     });
   }
@@ -141,7 +231,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
       return;
     }
 
-    await saveProgress(answers, page, theme);
+    await queueProgressSave(answers, page, theme);
     if (page < Math.ceil(questions.length / PAGE_SIZE)) {
       setPage((current) => current + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -149,6 +239,16 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
     }
 
     await handleSubmit();
+  }
+
+  async function handleBack() {
+    if (page <= 1) {
+      return;
+    }
+
+    await queueProgressSave(answers, page, theme);
+    setPage((current) => Math.max(1, current - 1));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   async function handleSubmit() {
@@ -171,6 +271,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
       return;
     }
 
+    clearDraft();
     router.push(`/results/${payload.attempt.id}`);
     router.refresh();
   }
@@ -216,7 +317,10 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
           </select>
         </label>
 
-        <div className="stack">
+        <div className="nav-actions">
+          <button className="button ghost" type="button" onClick={handleBack} disabled={page <= 1 || saving || submitting}>
+            Back
+          </button>
           <button className="button primary" type="button" onClick={handleNext} disabled={saving || submitting}>
             {page < Math.ceil(questions.length / PAGE_SIZE) ? 'Next' : 'Kirim Jawaban'}
           </button>
@@ -256,6 +360,17 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
             </div>
           </article>
         ))}
+
+        <div className="mobile-exam-actions">
+          <div className="nav-actions mobile-nav-actions">
+            <button className="button ghost" type="button" onClick={handleBack} disabled={page <= 1 || saving || submitting}>
+              Back
+            </button>
+            <button className="button primary" type="button" onClick={handleNext} disabled={saving || submitting}>
+              {page < Math.ceil(questions.length / PAGE_SIZE) ? 'Next' : 'Kirim Jawaban'}
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );

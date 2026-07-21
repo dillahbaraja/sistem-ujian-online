@@ -17,10 +17,10 @@
 
 :root[data-theme='light'] {
   color-scheme: light;
-  --bg: #f4f7fb;
-  --bg-soft: #ffffff;
-  --panel: rgba(255, 255, 255, 0.92);
-  --panel-strong: #ffffff;
+  --bg: #e9eef5;
+  --bg-soft: #f6f8fc;
+  --panel: rgba(247, 249, 252, 0.9);
+  --panel-strong: #fdfdfd;
   --border: rgba(15, 23, 42, 0.1);
   --text: #122033;
   --muted: #51627a;
@@ -264,7 +264,7 @@ main {
 
 .field span {
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .field input {
@@ -289,12 +289,20 @@ main {
 
 :root[data-theme='light'] .field input,
 :root[data-theme='light'] .field select {
-  background: #f8fafc;
+  background: #e6ecf4;
 }
 
 .field input:focus {
   outline: 2px solid rgba(56, 189, 248, 0.32);
   border-color: rgba(56, 189, 248, 0.4);
+}
+
+:root[data-theme='light'] .field input:focus,
+:root[data-theme='light'] .field select:focus {
+  outline: 0;
+  border-width: 2px;
+  border-color: rgba(15, 118, 110, 0.68);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
 }
 
 .error-box,
@@ -537,6 +545,12 @@ main {
   gap: 18px;
 }
 
+.page-header {
+  position: sticky;
+  top: 12px;
+  z-index: 5;
+}
+
 .question-card h2 {
   font-size: 1.08rem;
   line-height: 1.45;
@@ -592,8 +606,33 @@ main {
 }
 
 .option-button.selected {
-  background: rgba(56, 189, 248, 0.14);
-  border-color: rgba(56, 189, 248, 0.36);
+  background: rgba(56, 189, 248, 0.22);
+  border-color: rgba(56, 189, 248, 0.62);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.16) inset;
+}
+
+:root[data-theme='light'] .option-button.selected {
+  background: linear-gradient(145deg, rgba(15, 118, 110, 0.92), rgba(8, 47, 73, 0.92));
+  border-color: rgba(15, 118, 110, 0.96);
+  color: #f8fffd;
+  box-shadow: 0 10px 22px rgba(15, 118, 110, 0.18);
+}
+
+:root[data-theme='dark'] .option-button.selected {
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.42), rgba(14, 165, 233, 0.3));
+  border-color: rgba(125, 211, 252, 0.94);
+  color: #f8fcff;
+  box-shadow: 0 10px 24px rgba(8, 145, 178, 0.2);
+}
+
+:root[data-theme='light'] .option-button.selected .option-label {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+:root[data-theme='dark'] .option-button.selected .option-label {
+  background: rgba(255, 255, 255, 0.22);
+  color: #04111d;
 }
 
 .option-label {
@@ -632,6 +671,19 @@ main {
   margin-top: 8px;
 }
 
+.mobile-exam-actions {
+  display: none;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-actions .button {
+  flex: 1;
+}
+
 .list {
   margin: 0;
   padding-left: 18px;
@@ -649,6 +701,27 @@ main {
   .field-grid,
   .mini-grid {
     grid-template-columns: 1fr;
+  }
+
+  .exam-sidebar {
+    position: static;
+    top: auto;
+  }
+
+  .page-header {
+    top: 8px;
+  }
+
+  .mobile-exam-actions {
+    display: block;
+  }
+
+  .exam-sidebar .nav-actions {
+    display: none;
+  }
+
+  .mobile-nav-actions {
+    display: flex;
   }
 
   .topbar {

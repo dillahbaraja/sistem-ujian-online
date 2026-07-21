@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function GuestStartForm({ examId }) {
@@ -11,6 +11,14 @@ export default function GuestStartForm({ examId }) {
   const [theme, setTheme] = useState('dark');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.dataset.theme = theme;
+    return () => {
+      root.dataset.theme = '';
+    };
+  }, [theme]);
 
   async function handleStart(event) {
     event.preventDefault();
