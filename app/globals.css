@@ -676,10 +676,12 @@ main {
   z-index: 5;
 }
 
-.question-card h2 {
+.question-card h2,
+.question-stem {
   font-size: 1.08rem;
   line-height: 1.45;
   margin: 12px 0 0;
+  font-weight: 700;
 }
 
 .question-head {
@@ -913,7 +915,8 @@ main {
     font-size: 1.4rem;
   }
 
-  .question-card h2 {
+  .question-card h2,
+  .question-stem {
     font-size: 1.05rem;
   }
 }
@@ -994,4 +997,56 @@ main {
     border-radius: 8px;
     font-size: 0.82rem;
   }
+}
+
+/* Code block and inline syntax highlighting */
+.inline-code {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 0.88em;
+  padding: 3px 6px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.06);
+  color: #c2410c; /* warm reddish orange for contrast in light theme */
+}
+
+:root[data-theme='dark'] .inline-code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fdba74; /* warm orange in dark theme */
+}
+
+.code-block {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 16px 0;
+  padding: 16px;
+  border-radius: 12px;
+  background: #1e1e1e; /* VS Code dark background */
+  color: #d4d4d4; /* Default VS Code text color */
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* VS Code Syntax Highlighting Tokens */
+.token-comment {
+  color: #6a9955; /* Green */
+  font-style: italic;
+}
+
+.token-string {
+  color: #ce9178; /* Orange-brown */
+}
+
+.token-keyword {
+  color: #569cd6; /* Light Blue */
+  font-weight: bold;
+}
+
+.token-class {
+  color: #4ec9b0; /* Teal/Turquoise */
+}
+
+.token-number {
+  color: #b5cea8; /* Light Green */
 }

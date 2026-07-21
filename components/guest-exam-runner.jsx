@@ -12,6 +12,91 @@ function formatTime(seconds) {
   return `${minutes}:${rest}`;
 }
 
+function highlightJava(code) {
+  const keywords = new Set([
+    'public', 'private', 'protected', 'class', 'void', 'static', 'final',
+    'new', 'return', 'int', 'double', 'boolean', 'char', 'float', 'import',
+    'package', 'this', 'super', 'if', 'else', 'for', 'while', 'do', 'switch',
+    'case', 'break', 'continue', 'try', 'catch', 'throw', 'throws'
+  ]);
+
+  const tokenRegex = /(\/\/.*|"(?:[^"\\]|\\.)*"|[a-zA-Z_][a-zA-Z0-9_]*|[^a-zA-Z_0-9"\s]+|\s+)/g;
+  
+  const tokens = [];
+  let match;
+  while ((match = tokenRegex.exec(code)) !== null) {
+    tokens.push(match[0]);
+  }
+
+  return tokens.map((token, index) => {
+    if (token.startsWith('//')) {
+      return <span key={index} className="token-comment">{token}</span>;
+    }
+    if (token.startsWith('"')) {
+      return <span key={index} className="token-string">{token}</span>;
+    }
+    if (keywords.has(token)) {
+      return <span key={index} className="token-keyword">{token}</span>;
+    }
+    if (/^[A-Z][a-zA-Z0-9_]*$/.test(token)) {
+      return <span key={index} className="token-class">{token}</span>;
+    }
+    if (/^[0-9]+$/.test(token)) {
+      return <span key={index} className="token-number">{token}</span>;
+    }
+    return token;
+  });
+}
+
+function renderTextWithInlineCode(text) {
+  const parts = text.split('`');
+  return parts.map((part, index) => {
+    if (index % 2 === 1) {
+      return <code key={index} className="inline-code">{part}</code>;
+    }
+    return part;
+  });
+}
+
+function RichText({ text }) {
+  if (!text) return null;
+
+  const parts = text.split('```');
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (index % 2 === 1) {
+          let lang = '';
+          let code = part;
+          const match = part.match(/^([a-zA-Z0-9_-]+)\n/);
+          if (match) {
+            lang = match[1];
+            code = part.slice(match[0].length);
+          }
+          code = code.trimEnd();
+
+          return (
+            <pre key={index} className={`code-block ${lang}`}>
+              <code>{lang === 'java' ? highlightJava(code) : code}</code>
+            </pre>
+          );
+        } else {
+          const lines = part.split('\n');
+          return lines.map((line, lineIndex) => {
+            const content = renderTextWithInlineCode(line);
+            return (
+              <span key={`${index}-${lineIndex}`} className="text-line">
+                {content}
+                {lineIndex < lines.length - 1 && <br />}
+              </span>
+            );
+          });
+        }
+      })}
+    </>
+  );
+}
+
 function chunkRange(page, total) {
   const start = (page - 1) * PAGE_SIZE;
   const end = Math.min(start + PAGE_SIZE, total);
@@ -341,7 +426,9 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
               <span className="pill">Soal {question.number}</span>
               <span className="pill subtle">{question.type === 'multi' ? 'Multi-select' : 'Pilihan tunggal'}</span>
             </div>
-            <h2>{question.stem}</h2>
+            <div className="question-stem">
+              <RichText text={question.stem} />
+            </div>
 
             <div className="options-grid">
               {question.options.map((option) => {
@@ -354,7 +441,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
                     onClick={() => updateAnswer(question.id, option.label, question.type)}
                   >
                     <span className="option-label">{option.label}</span>
-                    <span>{option.text}</span>
+                    <span><RichText text={option.text} /></span>
                   </button>
                 );
               })}
