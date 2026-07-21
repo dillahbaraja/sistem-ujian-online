@@ -98,12 +98,13 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
   }, []);
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.dataset.theme = theme;
-    return () => {
-      root.dataset.theme = '';
-    };
+    document.documentElement.dataset.theme = theme;
   }, [theme]);
+
+  function handleThemeChange(nextTheme) {
+    setTheme(nextTheme);
+    document.documentElement.dataset.theme = nextTheme;
+  }
 
   useEffect(() => {
     const draft = readDraft();
@@ -311,7 +312,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
 
         <label className="field">
           <span>Tema</span>
-          <select value={theme} onChange={(event) => setTheme(event.target.value)}>
+          <select value={theme} onChange={(event) => handleThemeChange(event.target.value)}>
             <option value="dark">Dark mode</option>
             <option value="light">Light mode</option>
           </select>

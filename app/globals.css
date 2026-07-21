@@ -47,6 +47,7 @@ body {
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
+  transition: background 0.22s ease, color 0.22s ease;
 }
 
 body::before {
@@ -84,6 +85,30 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+}
+
+.topbar-sponsor {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.topbar-sponsor img {
+  display: block;
+  width: auto;
+}
+
+.topbar-sponsor img:first-child {
+  height: 48px;
+}
+
+.topbar-sponsor img:last-child {
+  height: 36px;
 }
 
 .brand {
@@ -137,13 +162,14 @@ main {
   background: var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+  transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, color 0.22s ease;
 }
 
 .hero-card {
   position: relative;
   overflow: hidden;
   border-radius: 28px;
-  padding: 32px;
+  padding: 30px;
 }
 
 .hero-card::after {
@@ -165,17 +191,47 @@ main {
 }
 
 .hero h1 {
-    font-size: clamp(2.1rem, 4vw, 3.2rem);
-    max-width: 18ch;
-    text-wrap: balance;
-  }
+  font-size: clamp(1.75rem, 2.8vw, 2.45rem);
+  max-width: 100%;
+  text-wrap: balance;
+}
 
-.hero p {
-  margin: 14px 0 0;
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-title {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+}
+
+.hero-line {
+  display: block;
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+}
+
+.hero-line-1 {
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+}
+
+.hero-line-2 {
+  font-size: clamp(1.6rem, 2.6vw, 2.35rem);
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+.hero-line-3,
+.hero-line-4 {
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
   color: var(--muted);
-  max-width: 60ch;
-  line-height: 1.65;
-  font-size: 1rem;
+  font-weight: 500;
+}
+
+.hero-content {
+  margin-top: 22px;
 }
 
 .hero-actions {
@@ -275,6 +331,7 @@ main {
   background: rgba(7, 17, 31, 0.72);
   color: var(--text);
   font-size: 0.92rem;
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
 }
 
 .field select {
@@ -285,6 +342,7 @@ main {
   background: rgba(7, 17, 31, 0.72);
   color: var(--text);
   font-size: 0.92rem;
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
 }
 
 :root[data-theme='light'] .field input,
@@ -314,6 +372,13 @@ main {
   padding: 14px 16px;
 }
 
+:root[data-theme='light'] .error-box,
+:root[data-theme='light'] .error-panel {
+  border-color: rgba(220, 38, 38, 0.34);
+  background: rgba(220, 38, 38, 0.12);
+  color: #7f1d1d;
+}
+
 .compact-panel {
   padding: 18px 20px;
 }
@@ -334,6 +399,36 @@ main {
   padding: 14px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border);
+}
+
+:root[data-theme='light'] .topbar-sponsor,
+:root[data-theme='light'] .hint-grid div,
+:root[data-theme='light'] .mini-stat,
+:root[data-theme='light'] .result-stat,
+:root[data-theme='light'] .option-button,
+:root[data-theme='light'] .pill.subtle,
+:root[data-theme='light'] .button.ghost {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+:root[data-theme='light'] .mini-stat,
+:root[data-theme='light'] .result-stat,
+:root[data-theme='light'] .option-button,
+:root[data-theme='light'] .pill.subtle {
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+}
+
+:root[data-theme='light'] .button.ghost {
+  color: #122033;
+}
+
+:root[data-theme='light'] .option-button {
+  color: #122033;
+}
+
+:root[data-theme='light'] .topbar-sponsor img {
+  filter: none;
 }
 
 .hint-grid strong,
@@ -598,6 +693,7 @@ main {
   color: var(--text);
   font-size: 0.92rem;
   line-height: 1.45;
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
 }
 
 :root[data-theme='light'] .option-button {
@@ -703,6 +799,10 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .hero-header {
+    flex-direction: column;
+  }
+
   .exam-sidebar {
     position: static;
     top: auto;
@@ -729,9 +829,18 @@ main {
     flex-direction: column;
   }
 
-  .hero h1 {
-      font-size: clamp(2rem, 8vw, 3rem);
-    }
+  .hero-line-1 {
+    font-size: clamp(1.7rem, 8vw, 2.25rem);
+  }
+
+  .hero-line-2 {
+    font-size: clamp(1.45rem, 6.6vw, 2rem);
+  }
+
+  .hero-line-3,
+  .hero-line-4 {
+    font-size: 0.95rem;
+  }
 
   .panel h1 {
     font-size: 1.4rem;

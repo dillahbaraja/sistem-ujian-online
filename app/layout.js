@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import './globals.css';
 
 export const metadata = {
@@ -15,6 +16,10 @@ export default function RootLayout({ children }) {
             <span className="brand-name">
               <strong>Ujian Online RPL</strong>
             </span>
+          </div>
+          <div className="topbar-sponsor" aria-label="Universitas Surakarta">
+            <Image src="/unsa_logo.png" alt="UNSA" width={40} height={40} priority />
+            <Image src="/white_logo_unsa.png" alt="Universitas Surakarta" width={118} height={36} priority />
           </div>
         </header>
         <main>{children}</main>

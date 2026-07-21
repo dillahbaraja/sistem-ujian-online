@@ -13,12 +13,13 @@ export default function GuestStartForm({ examId }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.dataset.theme = theme;
-    return () => {
-      root.dataset.theme = '';
-    };
+    document.documentElement.dataset.theme = theme;
   }, [theme]);
+
+  function handleThemeChange(nextTheme) {
+    setTheme(nextTheme);
+    document.documentElement.dataset.theme = nextTheme;
+  }
 
   async function handleStart(event) {
     event.preventDefault();
@@ -69,7 +70,7 @@ export default function GuestStartForm({ examId }) {
         </label>
         <label className="field">
           <span>Tema</span>
-          <select value={theme} onChange={(event) => setTheme(event.target.value)}>
+          <select value={theme} onChange={(event) => handleThemeChange(event.target.value)}>
             <option value="dark">Dark mode</option>
             <option value="light">Light mode</option>
           </select>
