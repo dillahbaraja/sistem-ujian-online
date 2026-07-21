@@ -5,8 +5,8 @@ import { hasSupabaseConfig } from '../../../lib/supabase.js';
 
 export const dynamic = 'force-dynamic';
 
-export default function ImportPage() {
-  const user = getSessionUser();
+export default async function ImportPage() {
+  const user = await getSessionUser();
   if (!user) {
     redirect('/login');
   }

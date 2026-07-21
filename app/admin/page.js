@@ -8,7 +8,7 @@ import AdminDeleteAttemptButton from '../../components/admin-delete-attempt-butt
 export const dynamic = 'force-dynamic';
 
 export default async function AdminPage({ searchParams }) {
-  const user = getSessionUser();
+  const user = await getSessionUser();
   if (!user) {
     redirect('/login');
   }
@@ -16,7 +16,8 @@ export default async function AdminPage({ searchParams }) {
     redirect('/exams');
   }
 
-  const selectedExamId = typeof searchParams?.examId === 'string' ? searchParams.examId : '';
+  const resolvedSearchParams = await searchParams;
+  const selectedExamId = typeof resolvedSearchParams?.examId === 'string' ? resolvedSearchParams.examId : '';
   const [summary, exams, attempts] = await Promise.all([getSummary(), getExamList(), listAdminAttempts()]);
   const filteredAttempts = selectedExamId
     ? attempts.filter((attempt) => attempt.exam_id === selectedExamId)

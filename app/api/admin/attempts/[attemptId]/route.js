@@ -5,7 +5,7 @@ import { deleteAdminAttempt } from '../../../../../lib/storage.js';
 export const runtime = 'nodejs';
 
 export async function DELETE(request, context) {
-  const user = getSessionUser();
+  const user = await getSessionUser();
   if (!user) {
     return NextResponse.json({ message: 'Silakan login terlebih dahulu.' }, { status: 401 });
   }
