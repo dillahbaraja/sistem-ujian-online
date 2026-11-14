@@ -176,6 +176,8 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
   const [now, setNow] = useState(Date.now());
   const [saving, setSaving] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [showSubmitModal, setShowSubmitModal] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
   const [error, setError] = useState('');
   const saveTimer = useRef(null);
   const isSavingRef = useRef(false);
@@ -190,9 +192,11 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
     document.documentElement.dataset.theme = theme;
   }, [theme]);
 
-  function handleThemeChange(nextTheme) {
+  function toggleTheme() {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(nextTheme);
     document.documentElement.dataset.theme = nextTheme;
+    writeDraft(answers, page, nextTheme);
   }
 
   useEffect(() => {
@@ -229,11 +233,13 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
     return Math.max(0, Math.floor((new Date(attempt.ends_at).getTime() - now) / 1000));
   }, [attempt?.ends_at, now]);
 
+  const totalPages = Math.ceil(questions.length / PAGE_SIZE);
   const [pageStart, pageEnd] = chunkRange(page, questions.length);
   const pageQuestions = questions.slice(pageStart, pageEnd);
   const allAnswered = pageQuestions.every((question) => (answers[question.id] || []).length > 0);
-  const allQuestionsAnswered = countAnswered(answers) === questions.length;
   const answeredCount = countAnswered(answers);
+  const allQuestionsAnswered = answeredCount === questions.length;
+  const progressPercent = Math.round((answeredCount / questions.length) * 100);
 
   useEffect(() => {
     if (saveTimer.current) {
@@ -258,7 +264,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
 
   useEffect(() => {
     if (remainingSeconds === 0 && allQuestionsAnswered && !submitting) {
-      void handleSubmit();
+      void executeSubmit();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [remainingSeconds, allQuestionsAnswered]);
@@ -331,11 +337,10 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
 
   function handleNext() {
     if (!allAnswered) {
-      setError(`Semua soal pada halaman ${page} harus dijawab dulu.`);
+      setError(`Mohon jawab semua soal pada halaman ${page} sebelum berpindah halaman.`);
       return;
     }
 
-    const totalPages = Math.ceil(questions.length / PAGE_SIZE);
     if (page < totalPages) {
       const nextPage = page + 1;
       setPage(nextPage);
@@ -344,7 +349,8 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
       return;
     }
 
-    void handleSubmit();
+    // On last page, prompt submit modal
+    setShowSubmitModal(true);
   }
 
   function handleBack() {
@@ -358,129 +364,292 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
     void persistProgress(answers, prevPage, theme);
   }
 
-  async function handleSubmit() {
+  function jumpToQuestion(index) {
+    const targetPage = Math.floor(index / PAGE_SIZE) + 1;
+    if (targetPage !== page) {
+      setPage(targetPage);
+    }
+    const targetId = questions[index]?.id;
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 50);
+  }
+
+  async function executeSubmit() {
     if (!allQuestionsAnswered) {
-      setError('Semua soal harus dijawab sebelum submit.');
+      setError('Semua soal harus dijawab sebelum submit final.');
+      setShowSubmitModal(false);
       return;
     }
 
     setSubmitting(true);
-    const response = await fetch(`/api/attempts/${attempt.id}/submit`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ answersByQuestionId: answers })
-    });
+    try {
+      const response = await fetch(`/api/attempts/${attempt.id}/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answersByQuestionId: answers })
+      });
 
-    const payload = await response.json();
-    if (!response.ok) {
-      setError(payload.message || 'Gagal mengirim jawaban.');
+      const payload = await response.json();
+      if (!response.ok) {
+        setError(payload.message || 'Gagal mengirim jawaban.');
+        setSubmitting(false);
+        setShowSubmitModal(false);
+        return;
+      }
+
+      clearDraft();
+      router.push(`/results/${payload.attempt.id}`);
+      router.refresh();
+    } catch {
+      setError('Gagal mengirim jawaban karena gangguan jaringan. Coba lagi.');
       setSubmitting(false);
-      return;
+      setShowSubmitModal(false);
     }
-
-    clearDraft();
-    router.push(`/results/${payload.attempt.id}`);
-    router.refresh();
   }
 
   return (
     <section className="exam-shell" data-theme={theme}>
-      <aside className="exam-sidebar panel">
-        <div className="exam-meta">
-          <div className="exam-meta-row">
-            <span className="exam-meta-label">NIM:</span>
-            <strong className="exam-meta-value">{attempt.nim}</strong>
-          </div>
-          <div className="exam-meta-row">
-            <span className="exam-meta-label">Nama:</span>
-            <strong className="exam-meta-value">{attempt.student_name}</strong>
-          </div>
+      {/* Top Floating Exam Navbar */}
+      <header className="exam-topbar">
+        <div className="exam-topbar-left">
+          <span className="exam-title-badge">📖 {exam.course_name || exam.title}</span>
+          <span className="exam-student-badge">👤 {attempt.nim} - {attempt.student_name}</span>
         </div>
 
-        <div className="mini-grid">
-          <div className="mini-stat">
-            <span>Waktu</span>
-            <strong className={remainingSeconds < 300 ? 'timer-danger' : ''}>{formatTime(remainingSeconds)}</strong>
+        <div className="exam-topbar-right">
+          <div className={`timer-badge ${remainingSeconds < 600 ? 'timer-alert' : ''}`}>
+            <span className="timer-icon">⏳</span>
+            <span className="timer-countdown">{formatTime(remainingSeconds)}</span>
           </div>
-          <div className="mini-stat">
-            <span>Terjawab</span>
-            <strong>{answeredCount}/{questions.length}</strong>
-          </div>
-          <div className="mini-stat">
-            <span>Halaman</span>
-            <strong>{page}/{Math.ceil(questions.length / PAGE_SIZE)}</strong>
-          </div>
-          <div className="mini-stat">
-            <span>Tema</span>
-            <strong>{theme}</strong>
-          </div>
-        </div>
 
-        <label className="field">
-          <span>Tema</span>
-          <select value={theme} onChange={(event) => handleThemeChange(event.target.value)}>
-            <option value="dark">Dark mode</option>
-            <option value="light">Light mode</option>
-          </select>
-        </label>
-
-        <div className="nav-actions">
-          <button className="button ghost" type="button" onClick={handleBack} disabled={page <= 1 || saving || submitting}>
-            Back
-          </button>
-          <button className="button primary" type="button" onClick={handleNext} disabled={saving || submitting}>
-            {page < Math.ceil(questions.length / PAGE_SIZE) ? 'Next' : 'Kirim Jawaban'}
+          <button
+            type="button"
+            className="theme-toggle-icon-btn"
+            onClick={toggleTheme}
+            title={theme === 'dark' ? 'Ganti ke Mode Terang' : 'Ganti ke Mode Gelap'}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
           </button>
         </div>
+      </header>
 
-        {error ? <p className="error-box" style={{ marginTop: 12 }}>{error}</p> : null}
-      </aside>
-
-      <div className="exam-content">
-        <div className="panel page-header">
-          <h2>Soal {pageStart + 1}-{pageEnd}</h2>
-        </div>
-
-        {pageQuestions.map((question) => (
-          <article key={question.id} className="panel question-card">
-            <div className="question-head">
-              <span className="pill">Soal {question.number}</span>
-              <span className="pill subtle">{question.type === 'multi' ? 'Multi-select' : 'Pilihan tunggal'}</span>
+      {/* Main Container: Sidebar + Content */}
+      <div className="exam-layout">
+        {/* Left Sidebar / Palet Nomor Soal */}
+        <aside className="exam-sidebar">
+          {/* Progress Card */}
+          <div className="sidebar-card">
+            <div className="progress-header">
+              <span className="progress-label">Progres Ujian</span>
+              <strong className="progress-value">{answeredCount} / {questions.length}</strong>
             </div>
-            <div className="question-stem">
-              <RichText text={question.stem} />
+            <div className="progress-bar-track">
+              <div
+                className="progress-bar-fill"
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
+            <span className="progress-subtext">{progressPercent}% Soal Terjawab</span>
+          </div>
+
+          {/* Question Palette Grid */}
+          <div className="sidebar-card palette-card">
+            <div className="palette-title-row">
+              <h3>Palet Nomor Soal</h3>
+              <span className="palette-page-badge">Hal {page} dari {totalPages}</span>
             </div>
 
-            <div className="options-grid">
-              {question.options.map((option) => {
-                const selected = (answers[question.id] || []).includes(option.label);
+            <div className="palette-grid">
+              {questions.map((q, idx) => {
+                const isAnswered = (answers[q.id] || []).length > 0;
+                const isCurrentPage = idx >= pageStart && idx < pageEnd;
+
                 return (
                   <button
-                    key={option.label}
+                    key={q.id}
                     type="button"
-                    className={`option-button ${selected ? 'selected' : ''}`}
-                    onClick={() => updateAnswer(question.id, option.label, question.type)}
+                    className={`palette-btn ${isAnswered ? 'answered' : 'unanswered'} ${isCurrentPage ? 'current-page' : ''}`}
+                    onClick={() => jumpToQuestion(idx)}
+                    title={`Lompat ke Soal ${idx + 1}`}
                   >
-                    <span className="option-label">{option.label}</span>
-                    <span><RichText text={option.text} /></span>
+                    {idx + 1}
                   </button>
                 );
               })}
             </div>
-          </article>
-        ))}
 
-        <div className="mobile-exam-actions">
-          <div className="nav-actions mobile-nav-actions">
-            <button className="button ghost" type="button" onClick={handleBack} disabled={page <= 1 || saving || submitting}>
-              Back
+            <div className="palette-legend">
+              <div className="legend-item">
+                <span className="legend-box answered" /> Sudah Dijawab
+              </div>
+              <div className="legend-item">
+                <span className="legend-box unanswered" /> Belum Dijawab
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Submit Button in Sidebar */}
+          <div className="sidebar-card action-card">
+            <button
+              type="button"
+              className="button button-finish full-width"
+              onClick={() => setShowSubmitModal(true)}
+              disabled={submitting}
+            >
+              🏁 Selesai &amp; Kumpulkan
             </button>
-            <button className="button primary" type="button" onClick={handleNext} disabled={saving || submitting}>
-              {page < Math.ceil(questions.length / PAGE_SIZE) ? 'Next' : 'Kirim Jawaban'}
+          </div>
+        </aside>
+
+        {/* Center/Right Question Stream */}
+        <div className="exam-content">
+          <div className="content-page-header">
+            <div>
+              <span className="eyebrow">Halaman {page} dari {totalPages}</span>
+              <h2>Soal Nomor {pageStart + 1} – {pageEnd}</h2>
+            </div>
+            {saving && <span className="save-status-indicator">💾 Menyimpan...</span>}
+          </div>
+
+          {error && (
+            <div className="error-banner">
+              <span className="error-icon">⚠️</span>
+              <span>{error}</span>
+            </div>
+          )}
+
+          <div className="questions-stream">
+            {pageQuestions.map((question) => {
+              const currentSelected = answers[question.id] || [];
+              const isMulti = question.type === 'multi';
+
+              return (
+                <article key={question.id} id={question.id} className="panel question-card">
+                  <div className="question-head">
+                    <span className="question-number-pill">Soal {question.number}</span>
+                    <span className={`question-type-pill ${isMulti ? 'type-multi' : 'type-single'}`}>
+                      {isMulti ? '☑️ Centang Semua Yang Benar' : '⭕ Pilihan Tunggal'}
+                    </span>
+                  </div>
+
+                  <div className="question-stem">
+                    <RichText text={question.stem} />
+                  </div>
+
+                  <div className="options-grid">
+                    {question.options.map((option) => {
+                      const selected = currentSelected.includes(option.label);
+
+                      return (
+                        <button
+                          key={option.label}
+                          type="button"
+                          className={`option-button ${selected ? 'selected' : ''}`}
+                          onClick={() => updateAnswer(question.id, option.label, question.type)}
+                        >
+                          <span className="option-label-circle">{option.label}</span>
+                          <span className="option-text">
+                            <RichText text={option.text} />
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          {/* Bottom Navigation Pagination Controls */}
+          <div className="bottom-nav-bar panel">
+            <button
+              type="button"
+              className="button button-secondary"
+              onClick={handleBack}
+              disabled={page <= 1 || submitting}
+            >
+              ← Halaman Sebelumnya
             </button>
+
+            <span className="page-indicator-text">
+              Halaman <strong>{page}</strong> / {totalPages}
+            </span>
+
+            {page < totalPages ? (
+              <button
+                type="button"
+                className="button button-primary"
+                onClick={handleNext}
+                disabled={submitting}
+              >
+                Halaman Berikutnya →
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="button button-finish"
+                onClick={() => setShowSubmitModal(true)}
+                disabled={submitting}
+              >
+                Kumpulkan Jawaban 🏁
+              </button>
+            )}
           </div>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      {showSubmitModal && (
+        <div className="modal-overlay">
+          <div className="modal-card">
+            <div className="modal-header">
+              <span className="modal-icon">📋</span>
+              <h3>Konfirmasi Selesai Ujian</h3>
+            </div>
+
+            <div className="modal-body">
+              <p>
+                Anda telah menjawab <strong>{answeredCount}</strong> dari total <strong>{questions.length}</strong> soal.
+              </p>
+
+              {!allQuestionsAnswered && (
+                <div className="modal-warning">
+                  ⚠️ <strong>Perhatian:</strong> Masih ada <strong>{questions.length - answeredCount} soal</strong> yang belum Anda jawab. Pastikan seluruh soal telah terjawab sebelum mengumpulkan.
+                </div>
+              )}
+
+              <p className="modal-sub">
+                Setelah lembar jawaban dikumpulkan, Anda tidak dapat mengubah jawaban lagi. Apakah Anda yakin ingin mengumpulkan sekarang?
+              </p>
+            </div>
+
+            <div className="modal-actions">
+              <button
+                type="button"
+                className="button button-secondary"
+                onClick={() => setShowSubmitModal(false)}
+                disabled={submitting}
+              >
+                Kembali Periksa
+              </button>
+              <button
+                type="button"
+                className="button button-finish"
+                onClick={executeSubmit}
+                disabled={submitting || !allQuestionsAnswered}
+              >
+                {submitting ? 'Mengirim...' : 'Ya, Kumpulkan Jawaban'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
