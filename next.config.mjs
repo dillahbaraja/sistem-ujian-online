@@ -35,7 +35,10 @@ loadLocalEnv();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  outputFileTracingRoot: path.join(process.cwd())
+  outputFileTracingRoot: path.join(process.cwd()),
+  outputFileTracingIncludes: {
+    '/**': ['./bank-soal-*.md']
+  }
 };
 
 export default nextConfig;
