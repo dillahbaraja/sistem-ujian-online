@@ -17,12 +17,19 @@ export default async function HomePage() {
   return (
     <section className="hero simple-hero">
       <div className="hero-card">
-        <div className="hero-copy">
-          <h1 className="hero-title">
-            <span className="hero-line hero-line-1">UJIAN ONLINE</span>
-            <span className="hero-line hero-line-2">TEKNIK INFORMATIKA - FTEI</span>
-            <span className="hero-line hero-line-3">UNIVERSITAS SURAKARTA</span>
-          </h1>
+        <div className="hero-header-row">
+          <div className="hero-copy">
+            <h1 className="hero-title">
+              <span className="hero-line hero-line-1">UJIAN ONLINE</span>
+              <span className="hero-line hero-line-2">TEKNIK INFORMATIKA - FTEI</span>
+              <span className="hero-line hero-line-3">UNIVERSITAS SURAKARTA</span>
+            </h1>
+          </div>
+
+          <div className="hero-lecturer-badge">
+            <span className="lecturer-label">Dosen Pengampu</span>
+            <strong className="lecturer-name">Dr. Abdillah Baradja, S.Kom., M.Eng.</strong>
+          </div>
         </div>
 
         <div className="hero-content">

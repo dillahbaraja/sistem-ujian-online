@@ -64,6 +64,10 @@ export default async function ResultPage({ params }) {
             <strong className="meta-value">{exam?.course_name || exam?.title || 'Ujian Online'}</strong>
           </div>
           <div className="meta-item">
+            <span className="meta-label">Dosen Pengampu</span>
+            <strong className="meta-value">Dr. Abdillah Baradja, S.Kom., M.Eng.</strong>
+          </div>
+          <div className="meta-item">
             <span className="meta-label">Nomor Induk Mahasiswa</span>
             <strong className="meta-value font-mono">{attempt.nim}</strong>
           </div>
@@ -71,7 +75,7 @@ export default async function ResultPage({ params }) {
             <span className="meta-label">Nama Mahasiswa</span>
             <strong className="meta-value">{attempt.student_name}</strong>
           </div>
-          <div className="meta-item">
+          <div className="meta-item full-width">
             <span className="meta-label">Waktu Pengumpulan</span>
             <strong className="meta-value">{formattedDate}</strong>
           </div>
