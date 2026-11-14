@@ -65,6 +65,12 @@ export default function GuestStartForm({ exams = [], examId }) {
         return;
       }
 
+      if (payload.attempt.status === 'submitted' || payload.attempt.alreadySubmitted) {
+        router.push(`/results/${payload.attempt.id}`);
+        router.refresh();
+        return;
+      }
+
       router.push(`/attempts/${payload.attempt.id}`);
       router.refresh();
     } catch {

@@ -31,7 +31,8 @@ export async function POST(request, context) {
       attempt: {
         id: session.attempt.id,
         status: session.attempt.status,
-        resume: session.resume === true
+        resume: session.resume === true,
+        alreadySubmitted: session.alreadySubmitted === true
       }
     });
   } catch (error) {

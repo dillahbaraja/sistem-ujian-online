@@ -263,11 +263,11 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
   }, [answers, page, theme]);
 
   useEffect(() => {
-    if (remainingSeconds === 0 && allQuestionsAnswered && !submitting) {
+    if (remainingSeconds === 0 && !submitting) {
       void executeSubmit();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remainingSeconds, allQuestionsAnswered]);
+  }, [remainingSeconds]);
 
   async function persistProgress(nextAnswers = answers, nextPage = page, nextTheme = theme) {
     writeDraft(nextAnswers, nextPage, nextTheme);
@@ -381,12 +381,6 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
   }
 
   async function executeSubmit() {
-    if (!allQuestionsAnswered) {
-      setError('Semua soal harus dijawab sebelum submit final.');
-      setShowSubmitModal(false);
-      return;
-    }
-
     setSubmitting(true);
     try {
       const response = await fetch(`/api/attempts/${attempt.id}/submit`, {
@@ -620,7 +614,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
 
               {!allQuestionsAnswered && (
                 <div className="modal-warning">
-                  ⚠️ <strong>Perhatian:</strong> Masih ada <strong>{questions.length - answeredCount} soal</strong> yang belum Anda jawab. Pastikan seluruh soal telah terjawab sebelum mengumpulkan.
+                  ⚠️ <strong>Perhatian:</strong> Masih ada <strong>{questions.length - answeredCount} soal</strong> yang belum Anda jawab. Soal yang tidak dijawab akan bernilai 0 (salah).
                 </div>
               )}
 
@@ -642,7 +636,7 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
                 type="button"
                 className="button button-finish"
                 onClick={executeSubmit}
-                disabled={submitting || !allQuestionsAnswered}
+                disabled={submitting}
               >
                 {submitting ? 'Mengirim...' : 'Ya, Kumpulkan Jawaban'}
               </button>
