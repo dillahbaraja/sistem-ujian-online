@@ -4,7 +4,7 @@ import { exportAdminAttemptsCsv } from '../../../../lib/storage.js';
 
 export const runtime = 'nodejs';
 
-export async function GET() {
+export async function GET(request) {
   const user = await getSessionUser();
   if (!user) {
     return NextResponse.json({ message: 'Silakan login terlebih dahulu.' }, { status: 401 });
@@ -13,11 +13,17 @@ export async function GET() {
     return NextResponse.json({ message: 'Akses admin diperlukan.' }, { status: 403 });
   }
 
-  const csv = await exportAdminAttemptsCsv();
+  const { searchParams } = new URL(request.url);
+  const examId = searchParams.get('examId') || '';
+  const year = searchParams.get('year') || '';
+
+  const csv = await exportAdminAttemptsCsv({ examId, year });
+  const filename = `rekap-nilai${examId ? '-matkul' : ''}${year ? `-${year}` : ''}.csv`;
+
   return new NextResponse(csv, {
     headers: {
       'Content-Type': 'text/csv; charset=utf-8',
-      'Content-Disposition': 'attachment; filename="ujian-rpl-nilai.csv"'
+      'Content-Disposition': `attachment; filename="${filename}"`
     }
   });
 }
