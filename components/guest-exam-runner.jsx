@@ -178,7 +178,8 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const saveTimer = useRef(null);
-  const saveQueue = useRef(Promise.resolve());
+  const isSavingRef = useRef(false);
+  const nextSaveRef = useRef(null);
 
   useEffect(() => {
     const interval = window.setInterval(() => setNow(Date.now()), 1000);
@@ -263,8 +264,15 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
   }, [remainingSeconds, allQuestionsAnswered]);
 
   async function persistProgress(nextAnswers = answers, nextPage = page, nextTheme = theme) {
-    setSaving(true);
     writeDraft(nextAnswers, nextPage, nextTheme);
+
+    if (isSavingRef.current) {
+      nextSaveRef.current = { answers: nextAnswers, page: nextPage, theme: nextTheme };
+      return;
+    }
+
+    isSavingRef.current = true;
+    setSaving(true);
 
     try {
       const response = await fetch(`/api/attempts/${attempt.id}/progress`, {
@@ -284,14 +292,21 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
         const payload = await response.json().catch(() => ({}));
         setError(payload.message || 'Gagal menyimpan progres.');
       }
+    } catch (err) {
+      console.warn('Background save interrupted, will retry:', err);
     } finally {
+      isSavingRef.current = false;
       setSaving(false);
+      if (nextSaveRef.current) {
+        const queued = nextSaveRef.current;
+        nextSaveRef.current = null;
+        void persistProgress(queued.answers, queued.page, queued.theme);
+      }
     }
   }
 
   function queueProgressSave(nextAnswers = answers, nextPage = page, nextTheme = theme) {
-    saveQueue.current = saveQueue.current.then(() => persistProgress(nextAnswers, nextPage, nextTheme));
-    return saveQueue.current;
+    void persistProgress(nextAnswers, nextPage, nextTheme);
   }
 
   function updateAnswer(questionId, label, type) {
@@ -309,35 +324,38 @@ export default function GuestExamRunner({ attempt, exam, questions, answers: ini
         }
         next[questionId] = [...existing];
       }
-      void queueProgressSave(next, page, theme);
+      writeDraft(next, page, theme);
       return next;
     });
   }
 
-  async function handleNext() {
+  function handleNext() {
     if (!allAnswered) {
       setError(`Semua soal pada halaman ${page} harus dijawab dulu.`);
       return;
     }
 
-    await queueProgressSave(answers, page, theme);
-    if (page < Math.ceil(questions.length / PAGE_SIZE)) {
-      setPage((current) => current + 1);
+    const totalPages = Math.ceil(questions.length / PAGE_SIZE);
+    if (page < totalPages) {
+      const nextPage = page + 1;
+      setPage(nextPage);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      void persistProgress(answers, nextPage, theme);
       return;
     }
 
-    await handleSubmit();
+    void handleSubmit();
   }
 
-  async function handleBack() {
+  function handleBack() {
     if (page <= 1) {
       return;
     }
 
-    await queueProgressSave(answers, page, theme);
-    setPage((current) => Math.max(1, current - 1));
+    const prevPage = page - 1;
+    setPage(prevPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    void persistProgress(answers, prevPage, theme);
   }
 
   async function handleSubmit() {
