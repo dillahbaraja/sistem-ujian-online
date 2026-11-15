@@ -6,6 +6,13 @@ export const metadata = {
   description: 'Web ujian online berbasis Next.js, Supabase, dan Vercel.'
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover'
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="id">
