@@ -19,6 +19,7 @@ export default async function AdminPage({ searchParams }) {
 
   const resolvedSearchParams = await searchParams;
   const selectedExamId = typeof resolvedSearchParams?.examId === 'string' ? resolvedSearchParams.examId : '';
+  const selectedClassGroup = typeof resolvedSearchParams?.classGroup === 'string' ? resolvedSearchParams.classGroup : '';
   const selectedYear = typeof resolvedSearchParams?.year === 'string' ? resolvedSearchParams.year : '';
 
   const [summary, exams, attempts] = await Promise.all([
@@ -46,10 +47,13 @@ export default async function AdminPage({ searchParams }) {
     distinctYears.unshift(currentYear);
   }
 
-  // Filter attempts based on Exam and Year
+  // Filter attempts based on Exam, Class Group, and Year
   let filteredAttempts = attempts;
   if (selectedExamId) {
     filteredAttempts = filteredAttempts.filter((attempt) => attempt.exam_id === selectedExamId);
+  }
+  if (selectedClassGroup) {
+    filteredAttempts = filteredAttempts.filter((attempt) => (attempt.class_group || 'Pagi') === selectedClassGroup);
   }
   if (selectedYear) {
     const targetYear = parseInt(selectedYear, 10);
@@ -62,6 +66,7 @@ export default async function AdminPage({ searchParams }) {
   // Build CSV export URL with active filters
   const exportParams = new URLSearchParams();
   if (selectedExamId) exportParams.set('examId', selectedExamId);
+  if (selectedClassGroup) exportParams.set('classGroup', selectedClassGroup);
   if (selectedYear) exportParams.set('year', selectedYear);
   const exportUrl = `/api/admin/export?${exportParams.toString()}`;
 
@@ -148,7 +153,7 @@ export default async function AdminPage({ searchParams }) {
         <span className="eyebrow">Penyaringan Data Mahasiswa</span>
         <h2 style={{ fontSize: '1.2rem', margin: '4px 0 14px' }}>Filter Berdasarkan Mata Kuliah &amp; Tahun Pelaksanaan</h2>
 
-        <form method="get" className="field-grid">
+        <form method="get" className="field-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
           <label className="field">
             <span>Mata Kuliah</span>
             <select name="examId" defaultValue={selectedExamId} className="input-elevated">
@@ -158,6 +163,15 @@ export default async function AdminPage({ searchParams }) {
                   {exam.course_name || exam.title}
                 </option>
               ))}
+            </select>
+          </label>
+
+          <label className="field">
+            <span>Kelas / Shift</span>
+            <select name="classGroup" defaultValue={selectedClassGroup} className="input-elevated">
+              <option value="">-- Semua Kelas (Pagi &amp; Sore) --</option>
+              <option value="Pagi">Kelas Pagi</option>
+              <option value="Sore">Kelas Sore</option>
             </select>
           </label>
 
@@ -177,7 +191,7 @@ export default async function AdminPage({ searchParams }) {
             <button className="button button-primary" type="submit">
               🔍 Tampilkan Filter
             </button>
-            {(selectedExamId || selectedYear) && (
+            {(selectedExamId || selectedClassGroup || selectedYear) && (
               <Link href="/admin" className="button button-secondary">
                 ✕ Reset Filter
               </Link>
@@ -199,9 +213,9 @@ export default async function AdminPage({ searchParams }) {
           </strong>
         </div>
         <div className="mini-stat">
-          <span>Tahun Aktif Terpilih</span>
+          <span>Filter Kelas &amp; Tahun</span>
           <strong style={{ fontSize: '1.2rem' }}>
-            {selectedYear ? `Tahun ${selectedYear}` : 'Semua Tahun'}
+            {selectedClassGroup ? `Kelas ${selectedClassGroup}` : 'Semua Shift'} {selectedYear ? `(${selectedYear})` : ''}
           </strong>
         </div>
       </div>
@@ -212,7 +226,7 @@ export default async function AdminPage({ searchParams }) {
           <div>
             <span className="eyebrow">Rekapitulasi Nilai</span>
             <h2 style={{ fontSize: '1.2rem', margin: '4px 0 0' }}>
-              Daftar Peserta Ujian {selectedYear ? `(Tahun ${selectedYear})` : ''}
+              Daftar Peserta Ujian {selectedClassGroup ? `(Kelas ${selectedClassGroup})` : ''} {selectedYear ? `(Tahun ${selectedYear})` : ''}
             </h2>
           </div>
           <span style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>
@@ -225,6 +239,7 @@ export default async function AdminPage({ searchParams }) {
             <thead>
               <tr>
                 <th>Mata Kuliah</th>
+                <th>Kelas</th>
                 <th>NIM</th>
                 <th>Nama Mahasiswa</th>
                 <th>WhatsApp</th>
@@ -257,6 +272,11 @@ export default async function AdminPage({ searchParams }) {
                     <tr key={attempt.id}>
                       <td>
                         <strong>{exam?.course_name || exam?.title || attempt.exam_id}</strong>
+                      </td>
+                      <td>
+                        <span className="pill subtle" style={{ fontWeight: 600 }}>
+                          {attempt.class_group || 'Pagi'}
+                        </span>
                       </td>
                       <td>
                         <span style={{ fontFamily: 'monospace', fontWeight: 700 }}>{attempt.nim}</span>

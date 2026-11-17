@@ -9,6 +9,7 @@ export async function POST(request, context) {
   const nim = String(payload.nim ?? '').trim();
   const studentName = String(payload.studentName ?? '').trim();
   const whatsapp = String(payload.whatsapp ?? '').trim();
+  const classGroup = String(payload.classGroup ?? payload.class_group ?? 'Pagi').trim() === 'Sore' ? 'Sore' : 'Pagi';
   const theme = payload.theme === 'light' ? 'light' : 'dark';
 
   if (!nim || !studentName || !whatsapp) {
@@ -20,6 +21,7 @@ export async function POST(request, context) {
       nim,
       studentName,
       whatsapp,
+      classGroup,
       theme
     });
 

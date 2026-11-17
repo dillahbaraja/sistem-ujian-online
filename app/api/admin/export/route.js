@@ -15,10 +15,11 @@ export async function GET(request) {
 
   const { searchParams } = new URL(request.url);
   const examId = searchParams.get('examId') || '';
+  const classGroup = searchParams.get('classGroup') || '';
   const year = searchParams.get('year') || '';
 
-  const csv = await exportAdminAttemptsCsv({ examId, year });
-  const filename = `rekap-nilai${examId ? '-matkul' : ''}${year ? `-${year}` : ''}.csv`;
+  const csv = await exportAdminAttemptsCsv({ examId, classGroup, year });
+  const filename = `rekap-nilai${examId ? '-matkul' : ''}${classGroup ? `-${classGroup.toLowerCase()}` : ''}${year ? `-${year}` : ''}.csv`;
 
   return new NextResponse(csv, {
     headers: {

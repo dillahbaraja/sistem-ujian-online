@@ -78,6 +78,10 @@ export default async function ResultPage({ params }) {
             <span className="meta-label">Nama Mahasiswa</span>
             <strong className="meta-value">{attempt.student_name}</strong>
           </div>
+          <div className="meta-item">
+            <span className="meta-label">Kelas / Shift</span>
+            <strong className="meta-value">Kelas {attempt.class_group || 'Pagi'}</strong>
+          </div>
           <div className="meta-item full-width">
             <span className="meta-label">Waktu Pengumpulan</span>
             <strong className="meta-value">{formattedDate}</strong>

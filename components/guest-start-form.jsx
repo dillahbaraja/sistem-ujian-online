@@ -35,6 +35,7 @@ export default function GuestStartForm({ exams = [], examId }) {
   const [nim, setNim] = useState('');
   const [studentName, setStudentName] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
+  const [classGroup, setClassGroup] = useState('Pagi');
   const [theme, setTheme] = useState('light');
   const [selectedExamId, setSelectedExamId] = useState(examId ?? exams[0]?.id ?? '');
   const [error, setError] = useState('');
@@ -88,6 +89,7 @@ export default function GuestStartForm({ exams = [], examId }) {
           nim,
           studentName,
           whatsapp,
+          classGroup,
           theme
         })
       });
@@ -257,7 +259,7 @@ export default function GuestStartForm({ exams = [], examId }) {
                     />
                   </label>
 
-                  <label className="field full-width">
+                  <label className="field">
                     <span>Nomor WhatsApp Aktif</span>
                     <input
                       value={whatsapp}
@@ -266,7 +268,22 @@ export default function GuestStartForm({ exams = [], examId }) {
                       className="input-elevated"
                       autoComplete="tel"
                     />
-                    <p className="field-hint">Untuk pencatatan rekapitulasi data hasil ujian resmi.</p>
+                    <p className="field-hint">Untuk pencatatan rekapitulasi data resmi.</p>
+                  </label>
+
+                  <label className="field">
+                    <span>Kelas / Shift Perkuliahan</span>
+                    <div className="select-wrap">
+                      <select
+                        value={classGroup}
+                        onChange={(event) => setClassGroup(event.target.value)}
+                        className="input-elevated select-custom"
+                      >
+                        <option value="Pagi">Kelas Pagi</option>
+                        <option value="Sore">Kelas Sore</option>
+                      </select>
+                    </div>
+                    <p className="field-hint">Pilih sesi perkuliahan Anda (Pagi / Sore).</p>
                   </label>
                 </div>
 
