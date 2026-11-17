@@ -55,13 +55,8 @@ export default async function HomePage() {
                 </a>
               </div>
             </div>
-          ) : exams.length > 0 ? (
-            <GuestStartForm exams={exams} examId={exams[0]?.id} />
           ) : (
-            <div className="panel compact-panel" style={{ marginTop: 20 }}>
-              <h2>Ujian belum aktif</h2>
-              <p className="muted">Belum ada mata kuliah yang dipublikasikan.</p>
-            </div>
+            <GuestStartForm exams={exams} examId={exams[0]?.id} />
           )}
         </div>
       </div>

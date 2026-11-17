@@ -40,6 +40,9 @@ export default async function ResultPage({ params }) {
       })
     : '-';
 
+  const isEkonomi = exam?.course_name?.toLowerCase().includes('literasi digital') || exam?.title?.toLowerCase().includes('literasi digital');
+  const facultyName = isEkonomi ? 'Fakultas Ekonomi dan Akuntansi' : 'Fakultas Teknik Elektro dan Informatika';
+
   return (
     <section className="result-container">
       <div className="panel result-card">
@@ -49,7 +52,7 @@ export default async function ResultPage({ params }) {
             <Image src="/unsa_logo.png" alt="UNSA" width={48} height={48} priority />
             <div>
               <span className="result-inst">UNIVERSITAS SURAKARTA</span>
-              <span className="result-dept">Fakultas Teknik Elektro dan Informatika</span>
+              <span className="result-dept">{facultyName}</span>
             </div>
           </div>
           <span className="result-official-badge">LEMBAR HASIL UJIAN RESMI</span>
