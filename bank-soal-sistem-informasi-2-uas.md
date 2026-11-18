@@ -1,603 +1,567 @@
-# UAS Sistem Informasi II Semester VII
+# UAS Sistem Informasi II Semester V
 
 **Program Studi:** Teknik Informatika  
 **Fakultas:** Teknik Elektro dan Informatika  
 **Universitas:** Universitas Surakarta  
-**Mata Kuliah:** UAS Sistem Informasi II Semester VII  
-**Target:** Mahasiswa Semester VII  
+**Mata Kuliah:** UAS Sistem Informasi II Semester V  
+**Target:** Mahasiswa Semester V  
 
 ## Petunjuk Umum
 
-- Soal nomor 1-35 adalah pilihan ganda tunggal.
-- Soal nomor 36-50 adalah soal centang lebih dari satu.
-- Pilih jawaban paling tepat untuk soal tunggal.
-- Untuk soal multi-select, semua jawaban benar harus dipilih.
-- Bagian penjelasan di bawah soal menjelaskan konsep yang diuji tanpa menampilkan kunci jawaban.
+- Soal berjumlah 50 nomor pilihan ganda tunggal (Nomor 1–50).
+- Pilih salah satu jawaban yang paling tepat (A, B, C, atau D).
+- Bagian penjelasan di bawah soal menguraikan konsep akademis dan metodologis yang diuji tanpa menampilkan kunci jawaban secara langsung.
 
 ---
 
-## Soal Pilihan Ganda Tunggal
+## Soal Pilihan Ganda
 
 ### 1.
-Dalam bidang rekayasa dan pengembangan sistem informasi, singkatan dari SDLC yang paling tepat adalah:
+Menurut Hoffer, definisi Daur Hidup Pengembangan Sistem (SDLC) yang paling tepat adalah:
 
-A. System Design Life Concept  
-B. Software Development Life Cycle  
-C. Software Data Level Control  
-D. System Database Logical Center  
+A. Urutan pembelian komputer baru yang dilakukan perusahaan setiap akhir tahun anggaran  
+B. Metodologi proses standar yang diikuti organisasi untuk melaksanakan seluruh langkah menganalisis, merancang, mengimplementasikan, dan memelihara sistem informasi  
+C. Pedoman cara menghapus seluruh basis data lama ketika perusahaan berganti manajemen  
+D. Prosedur perbaikan kabel jaringan yang putus akibat bencana alam  
 
 **Penjelasan:**  
-SDLC adalah singkatan dari Software Development Life Cycle (Siklus Hidup Pengembangan Sistem/Perangkat Lunak).
+Hoffer mendefinisikan SDLC sebagai metodologi proses standar yang terstruktur untuk memandu organisasi dalam menganalisis, merancang, menerapkan, dan merawat sistem informasi.
 
 ### 2.
-Tujuan utama dari dilakukannya *Feasibility Study* (Studi Kelayakan) pada tahap awal pengembangan sistem informasi adalah:
+Dalam tim proyek pengembangan sistem informasi, keterlibatan seorang Auditor Internal sangat penting terutama untuk:
 
-A. Menulis seluruh baris kode program aplikasi  
-B. Menilai apakah proyek sistem informasi layak dilanjutkan atau tidak  
-C. Memperbaiki bug yang ditemukan oleh pemakai  
-D. Menentukan merek komputer yang akan dibeli pegawai  
+A. Menulis kode program modul antarmuka pengguna  
+B. Memastikan bahwa rancangan sistem memenuhi standar akurasi, kontrol internal, keamanan data, dan kemudahan untuk diaudit  
+C. Menentukan warna tema dan ikon grafis aplikasi  
+D. Menjual lisensi perangkat lunak kepada perusahaan rekanan  
 
 **Penjelasan:**  
-Studi kelayakan bertujuan menilai kelayakan proyek dari berbagai aspek (biaya, manfaat, teknis, operasional) sebelum sumber daya besar dialokasikan.
+Auditor internal memastikan bahwa sistem informasi yang dirancang memiliki mekanisme kontrol yang memadai, memenuhi regulasi kepatuhan, aman, akurat, dan dapat diaudit secara transparan (*audit trail*).
 
 ### 3.
-Dalam analisis kelayakan, pertimbangan apakah sistem baru dapat diterima dengan baik oleh budaya kerja pegawai dan sesuai tingkat keahlian mereka termasuk ke dalam aspek:
+Fokus utama dari tahap Analisis Sistem pada siklus hidup pengembangan sistem informasi adalah:
 
-A. Aspek Teknologi  
-B. Aspek Hukum  
-C. Aspek Organisasi atau Operasional  
-D. Aspek Jadwal  
+A. Menentukan rincian tentang apa yang harus dikerjakan oleh sistem baru (dan bukan bagaimana caranya secara teknis)  
+B. Langsung membeli perangkat keras komputer tercanggih di pasaran  
+C. Memperbaiki komponen keyboard dan monitor yang rusak di kantor  
+D. Menentukan merek pendingin ruangan untuk ruang server  
 
 **Penjelasan:**  
-Kelayakan operasional/organisasi menilai kecocokan sistem dengan budaya kerja dan kesiapan keahlian sumber daya manusia yang akan mengoperasikannya.
+Analisis sistem berfokus pada pemahaman masalah bisnis dan perumusan kebutuhan fungsional (apa yang harus dilakukan sistem), sedangkan aspek teknis implementasi (bagaimana caranya) merupakan ranah perancangan teknis.
 
 ### 4.
-Keuntungan sistem informasi yang tidak dapat diukur secara langsung dengan nominal uang (seperti peningkatan kepuasan pelanggan atau moral kerja pegawai) disebut:
+Dalam analisis biaya dan manfaat pengembangan sistem informasi, analogi "Prinsip Gunung Es" (*Iceberg Principle*) digunakan untuk mengingatkan manajemen bahwa:
 
-A. Biaya berwujud (Tangible)
-B. Biaya langsung (Direct)
-C. Manfaat non-ekonomi (Intangible)
-D. Biaya variabel (Variable)
+A. Investasi teknologi informasi pasti akan membeku dan merugikan organisasi  
+B. Biaya pengadaan awal sering kali tampak kecil di permukaan, sedangkan biaya operasional dan pemeliharaan jangka panjang jauh lebih besar di bawah permukaan  
+C. Harga perangkat keras komputer akan selalu mengalami penurunan setiap tahun  
+D. Sistem informasi hanya dapat beroperasi dengan baik di ruangan bersuhu dingin  
 
 **Penjelasan:**  
-Intangible benefit (manfaat non-ekonomi) adalah manfaat kualitatif yang bernilai positif bagi organisasi namun sulit dihitung langsung dengan satuan moneter.
+Prinsip gunung es menggambarkan bahwa biaya investasi awal sering kali hanya sebagian kecil yang tampak, sementara biaya operasional, lisensi, pelatihan, dan pemeliharaan berkala jauh lebih masif di bawah permukaan.
 
 ### 5.
-Apa yang dimaksud dengan analogi "Gunung Es" (Iceberg Principle) dalam analisis pembiayaan sistem informasi?
+Dalam studi kelayakan proyek sistem informasi, pertimbangan mengenai apakah sistem yang diusulkan sesuai dengan budaya kerja organisasi dan kesiapan keterampilan pegawai termasuk dalam aspek:
 
-A. Biaya pengadaan awal terlihat kecil di puncak, sedangkan biaya pemeliharaan dan operasi jangka panjang jauh lebih besar di bawah permukaan  
-B. Investasi sistem informasi pasti akan mengalami kerugian seperti es yang mencair  
-C. Harga komputer akan selalu turun setiap tahun  
-D. Biaya awal pembuatan sistem selalu merupakan biaya paling mahal  
+A. Aspek Kelayakan Teknologi  
+B. Aspek Kelayakan Organisasi atau Operasional  
+C. Aspek Kelayakan Hukum  
+D. Aspek Kelayakan Jadwal  
 
 **Penjelasan:**  
-Prinsip gunung es menunjukkan bahwa biaya awal pembelian sering kali hanya bagian kecil yang tampak, sementara biaya tersembunyi (pemeliharaan, pelatihan, lisensi, operasional) jauh lebih besar.
+Kelayakan operasional dan organisasi menilai apakah sistem baru dapat diterima oleh budaya kerja pegawai dan apakah tingkat keahlian sumber daya manusia yang ada memadai untuk mengoperasikannya.
 
 ### 6.
-Manfaat utama dari adanya dokumentasi sistem informasi yang lengkap dan rapi selama pengembangan adalah:
+Keuntungan sistem informasi yang dampaknya nyata bagi organisasi namun sulit diukur langsung dengan nilai nominal uang (seperti peningkatan moral kerja pegawai atau citra profesional perusahaan) disebut:
 
-A. Memperberat beban kerja pengembang  
-B. Mempermudah pemeliharaan sistem dan pelacakan kesalahan di masa depan  
-C. Menghilangkan kebutuhan untuk melakukan pengujian sistem  
-D. Menjamin komputer tidak akan pernah terkena virus  
+A. Manfaat Berwujud (*Tangible Benefit*)  
+B. Manfaat Tidak Berwujud (*Intangible Benefit*)  
+C. Biaya Operasional Langsung  
+D. Kerugian Depresiasi Aset  
 
 **Penjelasan:**  
-Dokumentasi yang baik menjadi panduan operasional bagi pengguna dan mempermudah tim pengembang dalam merawat serta melacak bug sistem di kemudian hari.
+Intangible benefit adalah manfaat kualitatif bernilai positif yang dirasakan organisasi namun sukar dihitung secara matematis dalam satuan moneter.
 
 ### 7.
-Tahap dalam SDLC yang bertujuan menentukan masukan (input) yang diperlukan, keluaran (output) yang dihasilkan, dan lingkup proses sistem adalah:
+Metode analisis penganggaran modal yang mengukur jangka waktu yang dibutuhkan agar arus kas masuk dari sistem informasi dapat menutup seluruh biaya investasi awal disebut:
 
-A. Tahap Pengkodean
-B. Tahap Analisis Kebutuhan  
-C. Tahap Pemeliharaan  
-D. Tahap Pemasangan Hardware  
+A. Internal Rate of Return (IRR)  
+B. Payback Period  
+C. Net Present Value (NPV)  
+D. Critical Path Method (CPM)  
 
 **Penjelasan:**  
-Analisis kebutuhan bertugas mengidentifikasi apa yang harus dilakukan sistem, mencakup spesifikasi input, output, serta batasan lingkup proses.
+Payback period menghitung berapa lama waktu yang diperlukan bagi organisasi untuk mengembalikan modal investasi awal yang telah dikeluarkan untuk proyek sistem informasi.
 
 ### 8.
-Keuntungan utama dari metode pengadaan sistem informasi dengan cara "Membuat Sendiri" (In-House Development) adalah:
+Tahap Analisis Kebutuhan menghasilkan dokumen penting yang menjadi acuan bersama antara pemakai dan pengembang. Dokumen tersebut adalah:
 
-A. Waktu pengembangan paling singkat dibanding cara lain  
-B. Sistem dapat dirancang dan diatur sangat sesuai dengan kebutuhan unik organisasi  
-C. Tidak memerlukan programmer atau tenaga ahli TI sama sekali  
-D. Dijamin 100% bebas dari segala jenis bug sejak hari pertama  
+A. Bukti Pembelian Komputer  
+B. Spesifikasi Kebutuhan Sistem (*System Requirements Specification*)  
+C. Jadwal Cuti Tahunan Tim Programmer  
+D. Surat Perjanjian Sewa Gedung Kantor  
 
 **Penjelasan:**  
-In-house development memungkinkan organisasi mengkustomisasi sistem sepenuhnya sesuai alur kerja internal dan menjadikannya keunggulan kompetitif.
+Spesifikasi kebutuhan sistem mendokumentasikan secara rinci masukan, proses, keluaran, batasan volume data, kategori pemakai, dan aturan bisnis yang harus dipenuhi sistem.
 
 ### 9.
-Salah satu kelemahan utama dari metode membangun sistem informasi sendiri (In-House) adalah:
+Keuntungan paling menonjol dari pengadaan sistem informasi dengan cara "Membuat Sendiri" (*In-House Development*) adalah:
 
-A. Membutuhkan waktu pengembangan yang relatif lama karena dimulai dari nol  
-B. Organisasi tidak memiliki hak cipta atas source code sistem  
-C. Tampilan sistem tidak bisa diubah sama sekali di masa depan  
-D. Biaya lisensi tahunan wajib disetor ke pihak asing  
+A. Waktu penyelesaian paling kilat dibanding opsi lainnya  
+B. Sistem dapat dirancang sangat unik dan disesuaikan tepat dengan proses bisnis internal perusahaan sehingga menjadi keunggulan kompetitif  
+C. Organisasi tidak membutuhkan staf programmer atau tenaga ahli TI sama sekali  
+D. Dijamin bebas dari seluruh biaya pemeliharaan di masa depan  
 
 **Penjelasan:**  
-Membangun sistem sendiri membutuhkan waktu relatif lama karena seluruh perancangan dan pengkodean dikerjakan dari awal.
+In-house development memungkinkan organisasi merancang sistem yang sepenuhnya cocok dengan kebutuhan unik internal dan memegang kendali penuh atas kode sumber serta pengembangannya.
 
 ### 10.
-Keuntungan paling menonjol dari membeli perangkat lunak paket komersial (COTS) daripada membuat sendiri adalah:
+Kelemahan atau risiko terbesar dari metode membangun sistem informasi sendiri (*In-House*) adalah:
 
-A. Sistem pasti 100% cocok dengan alur kerja perusahaan tanpa perlu adaptasi proses  
-B. Waktu penerapan jauh lebih cepat karena program sudah jadi dan teruji di pasaran  
-C. Perusahaan otomatis mendapatkan hak cipta penuh atas kode sumber  
-D. Tidak diperlukan pelatihan sama sekali bagi pemakai  
+A. Membutuhkan waktu pengembangan yang relatif lama dan biaya tim internal yang cukup besar  
+B. Hak cipta perangkat lunak otomatis menjadi milik vendor asing  
+C. Program aplikasi tidak akan pernah bisa diubah tampilannya  
+D. Sistem dilarang beroperasi menggunakan jaringan internet  
 
 **Penjelasan:**  
-Membeli perangkat lunak paket menghemat waktu secara signifikan karena aplikasi siap pakai dan telah diuji secara luas oleh vendor.
+Membangun sistem sendiri dari nol menuntut waktu pengerjaan yang panjang, membutuhkan ketersediaan tenaga spesialis yang terampil, dan berisiko mengalami pembengkakan waktu (*schedule slippage*).
 
 ### 11.
-Pengalihan operasional atau pengembangan sebagian fungsi sistem informasi kepada pihak ketiga spesialis disebut:
+Keuntungan utama dari pengadaan sistem informasi dengan cara membeli perangkat lunak paket komersial (*Commercial Off-The-Shelf* / COTS) adalah:
+
+A. Sistem pasti 100% cocok dengan alur kerja perusahaan tanpa perlu penyesuaian proses apa pun  
+B. Waktu penerapan jauh lebih cepat karena perangkat lunak sudah jadi, teruji di pasaran, dan langsung siap dipasang  
+C. Perusahaan pembeli otomatis memiliki hak paten dan kode sumber aplikasi  
+D. Tidak diperlukan pelatihan penggunaan aplikasi bagi staf kantor  
+
+**Penjelasan:**  
+Membeli paket COTS menghemat waktu secara signifikan karena perangkat lunak sudah teruji keandalannya di industri dan dapat segera dioperasikan.
+
+### 12.
+Kelemahan paling mendasar dari penggunaan perangkat lunak paket komersial (COTS) bagi sebuah perusahaan adalah:
+
+A. Biaya listrik komputer menjadi dua kali lipat  
+B. Fitur aplikasi sering kali tidak dapat disesuaikan sepenuhnya dengan keunikan proses bisnis organisasi (*kustomisasi terbatas*)  
+C. Perangkat lunak paket tidak dapat mencetak laporan keuangan  
+D. Program hanya boleh diinstal pada satu komputer di seluruh dunia  
+
+**Penjelasan:**  
+Perangkat lunak paket dibuat untuk kebutuhan umum (generik), sehingga sulit dikustomisasi untuk memenuhi kebutuhan spesifik tanpa melakukan kompromi alur kerja bisnis.
+
+### 13.
+Pengalihan tanggung jawab pengelolaan atau pengembangan sebagian fungsi sistem informasi kepada pihak ketiga eksternal yang memiliki spesialisasi disebut:
 
 A. Insourcing  
 B. Outsourcing  
 C. Downsizing  
-D. Franchising  
+D. Offloading  
 
 **Penjelasan:**  
-Outsourcing adalah penyerahan tanggung jawab pengelolaan atau pengembangan fungsi TI tertentu kepada pihak luar agar perusahaan dapat fokus pada bisnis intinya.
-
-### 12.
-Risiko utama yang harus diwaspadai perusahaan ketika memutuskan melakukan outsourcing sistem informasi adalah:
-
-A. Karyawan kantor menjadi terlalu ahli dalam pemrograman  
-B. Potensi hilangnya kendali atas rahasia data dan ketergantungan pada vendor  
-C. Sistem tidak bisa dijalankan menggunakan listrik  
-D. Biaya awal pasti gratis selamanya  
-
-**Penjelasan:**  
-Outsourcing memiliki risiko kebocoran data sensitif perusahaan kepada pihak ketiga serta ketergantungan jangka panjang terhadap vendor tersebut.
-
-### 13.
-Perangkat lunak yang kode sumbernya (source code) dibuka untuk umum sehingga dapat dipelajari, diubah, dan dikembangkan secara bebas disebut:
-
-A. Proprietary Software  
-B. Commercial Closed-Source  
-C. Open Source Software  
-D. Shareware Berbayar  
-
-**Penjelasan:**  
-Open Source Software adalah perangkat lunak yang kode sumbernya terbuka untuk diakses, dimodifikasi, dan didistribusikan sesuai lisensinya.
+Outsourcing adalah praktik bisnis menyerahkan operasional atau pengembangan fungsi TI kepada pihak luar agar perusahaan dapat lebih berfokus pada kompetensi bisnis utamanya.
 
 ### 14.
-Pendekatan pengembangan sistem yang membuat program versi sederhana dengan cepat dan bertahap agar segera dapat dievaluasi oleh pemakai disebut:
+Risiko strategis yang wajib diwaspadai oleh manajemen ketika memutuskan melakukan outsourcing sistem informasi inti adalah:
 
-A. Model Waterfall Klasik  
-B. Metode Prototipe
-C. Metode Manual  
-D. Model Sekuensial Linear  
+A. Pegawai kantor menjadi terlalu mahir dalam rekayasa perangkat lunak  
+B. Potensi hilangnya kendali atas rahasia data strategis dan ketergantungan tinggi pada kelangsungan hidup vendor  
+C. Komputer kantor tidak bisa dihubungkan ke proyektor presentasi  
+D. Biaya pengembangan otomatis menjadi gratis permanen  
 
 **Penjelasan:**  
-Metode prototipe menggunakan pendekatan cepat dan bertahap sehingga pengguna dapat segera melihat dan mencoba bentuk awal sistem untuk memberikan evaluasi.
+Kelemahan outsourcing meliputi ancaman kebocoran rahasia bisnis kepada pihak ketiga serta ketergantungan operasional jangka panjang terhadap vendor penyedia jasa.
 
 ### 15.
-Sasaran utama dari pembuatan prototipe dalam pengembangan sistem informasi adalah:
+Perangkat lunak yang kode sumbernya (*source code*) disediakan secara terbuka untuk umum sehingga pengguna dapat mempelajari, memodifikasi, dan memperbaikinya secara legal disebut:
 
-A. Memperpanjang waktu pembuatan sistem agar proyek berjalan lebih lama  
-B. Menyediakan umpan balik cepat dan konkret dari pemakai ke pengembang
-C. Menghilangkan keterlibatan pengguna dalam proses perancangan  
-D. Menggantikan seluruh staf kantor dengan mesin otomatis  
+A. Proprietary Software  
+B. Open Source Software (OSS)  
+C. Closed Commercial Package  
+D. Firmware Terenkripsi  
 
 **Penjelasan:**  
-Prototipe memotong waktu tunggu pemakai untuk melihat bentuk konkret sistem dan memberikan sarana umpan balik cepat kepada pengembang.
+Open Source Software memberikan kebebasan bagi pengguna untuk memeriksa, memodifikasi, dan mendistribusikan kode program sesuai dengan ketentuan lisensi terbuka yang berlaku.
 
 ### 16.
-Metode prototipe sangat tepat digunakan terutama pada situasi di mana:
+Pendekatan pengembangan sistem yang membuat versi sederhana program yang bekerja secara cepat guna memperoleh umpan balik nyata dari pengguna disebut:
 
-A. Kebutuhan pemakai sudah sangat jelas, pasti, dan tidak akan berubah  
-B. Kebutuhan pemakai masih sulit diidentifikasi atau sulit diungkapkan secara rinci  
-C. Proyek tidak memiliki batasan waktu sama sekali  
-D. Organisasi sama sekali menolak penggunaan komputer  
+A. Model Waterfall Sekuensial  
+B. Metode Prototipe (*Prototyping*)  
+C. Big-Bang Deployment  
+D. Analisis Black-Box Murni  
 
 **Penjelasan:**  
-Saat pengguna kesulitan merumuskan apa yang mereka butuhkan secara tertulis, prototipe membantu memperjelas kebutuhan melalui contoh sistem yang nyata.
+Metode prototipe membangun model kerja awal sistem secara cepat agar pemakai dapat berinteraksi langsung dan memberikan evaluasi konkret terhadap kebutuhan mereka.
 
 ### 17.
-Model prototipe di mana program dibuat secara cepat hanya untuk memperjelas kebutuhan pengguna, kemudian prototipe tersebut dibuang saat sistem nyata mulai dibangun disebut:
+Metode prototipe sangat ideal diterapkan pada proyek sistem informasi yang berada dalam kondisi:
+
+A. Kebutuhan pemakai sudah sangat pasti, jelas, dan dijamin tidak akan berubah  
+B. Kebutuhan pemakai masih kabur, rumit, atau sulit dirumuskan secara tertulis oleh pengguna  
+C. Proyek tidak memiliki batasan waktu sama sekali  
+D. Pengguna menolak menggunakan layar komputer  
+
+**Penjelasan:**  
+Prototipe sangat tepat dipakai ketika pengguna kesulitan mendefinisikan apa yang sebenarnya mereka inginkan, sehingga model nyata membantu memperjelas kebutuhan sistem.
+
+### 18.
+Model prototipe di mana program awal dibuat cepat semata-mata untuk memperjelas kebutuhan pemakai, lalu prototipe tersebut dibuang saat perancangan sistem nyata dimulai disebut:
 
 A. Evolutionary Prototype  
 B. Throwaway Prototype  
-C. Incremental Prototype  
-D. Final Product Release  
+C. Production Prototype  
+D. Incremental Master  
 
 **Penjelasan:**  
-Throwaway prototype dibuat semata-mata untuk menguji ide atau menggali kebutuhan, lalu ditinggalkan/dibuang ketika perancangan sistem sebenarnya dimulai.
+Throwaway prototype dibuat hanya sebagai alat bantu eksplorasi dan klarifikasi ide, kemudian ditinggalkan/dibuang ketika perancangan sistem yang sebenarnya dimulai.
 
-### 18.
-Model prototipe di mana program awal yang berfungsi terus disempurnakan fiturnya langkah demi langkah hingga akhirnya menjadi sistem operasional final disebut:
+### 19.
+Model prototipe di mana versi awal sistem yang fungsional terus-menerus disempurnakan dan diperluas fiturnya langkah demi langkah hingga akhirnya menjadi sistem operasional final disebut:
 
 A. Throwaway Prototype  
 B. Evolutionary Prototype  
-C. Paper Mockup  
-D. Wireframe Statis  
+C. Paper Wireframe  
+D. Disposable Mockup  
 
 **Penjelasan:**  
-Evolutionary prototype berkembang secara bertahap (berevolusi) dari fitur dasar hingga menjadi produk akhir yang utuh dan siap dipakai.
-
-### 19.
-Tahap perancangan sistem informasi yang mendefinisikan kebutuhan secara garis besar dan fokus pada apa yang dibutuhkan pemakai (seperti rancangan masukan, keluaran, dan prosedur) disebut:
-
-A. Perancangan Fisik  
-B. Perancangan Konseptual
-C. Perancangan Jaringan Kabel  
-D. Pembongkaran Hardware  
-
-**Penjelasan:**  
-Perancangan konseptual/logis berfokus pada kebutuhan pemakai dan penyelesaian masalah tanpa terikat pada spesifikasi teknis hardware tertentu.
+Evolutionary prototype berkembang secara bertahap (berevolusi) dari fondasi awal hingga menjadi sistem akhir yang lengkap dan siap diterapkan di lingkungan produksi.
 
 ### 20.
-Tahap perancangan sistem yang merinci spesifikasi modul secara teknis, rancangan fisik database, dan struktur antarmuka antarmodul disebut:
+Salah satu kelemahan atau jebakan yang sering muncul dari pendekatan prototipe adalah:
+
+A. Pengembang memerlukan waktu bertahun-tahun untuk membuat tampilan pertama  
+B. Pemakai dapat berasumsi keliru bahwa sistem sudah hampir selesai padahal struktur internal dan keamanannya belum dibangun dengan benar  
+C. Pemakai tidak diizinkan mencoba aplikasi sama sekali  
+D. Bahasa pemrograman yang digunakan otomatis menjadi usang  
+
+**Penjelasan:**  
+Prototipe yang menarik secara visual sering kali membuat pemakai mengira sistem telah selesai, padahal kode di belakangnya belum memiliki struktur yang kokoh, penanganan kesalahan, maupun keamanan basis data.
+
+### 21.
+Tahap perancangan sistem informasi yang mendefinisikan kebutuhan sistem dari sudut pandang pemakai (seperti format laporan keluaran, formulir masukan, dan alur prosedur bisnis) tanpa terikat spesifikasi teknis hardware tertentu disebut:
 
 A. Perancangan Fisik  
-B. Perancangan Konseptual
-C. Studi Kelayakan  
+B. Perancangan Konseptual / Logis  
+C. Perancangan Infrastruktur Kabel  
+D. Pengujian Beban Server  
+
+**Penjelasan:**  
+Perancangan konseptual/logis berorientasi pada penyelesaian kebutuhan informasi pemakai (apa yang dihasilkan dan diinputkan) secara konseptual tanpa memedulikan detail perangkat keras khusus.
+
+### 22.
+Tahap perancangan yang merinci spesifikasi teknis modul aplikasi, struktur tabel basis data fisik, skema jaringan, dan platform lingkungan eksekusi disebut:
+
+A. Perancangan Fisik  
+B. Perancangan Konseptual  
+C. Analisis Kelayakan Awal  
 D. Inisiasi Proyek  
 
 **Penjelasan:**  
-Perancangan fisik menghasilkan spesifikasi teknis yang detail, mulai dari rancangan database fisik, modul program, rancangan validasi, hingga platform yang dipakai.
-
-### 21.
-Metode konversi sistem di mana sistem lama langsung dimatikan dan pada saat yang sama sistem baru langsung dioperasikan secara penuh disebut:
-
-A. Konversi Paralel  
-B. Konversi Bertahap
-C. Konversi Langsung
-D. Konversi Percontohan
-
-**Penjelasan:**  
-Konversi langsung (direct cutover/big bang) menghentikan sistem lama seketika dan langsung mengaktifkan sistem baru sebagai pengganti.
-
-### 22.
-Salah satu kelemahan atau risiko terbesar dari metode Konversi Langsung (Direct Cutover) adalah:
-
-A. Biaya operasional menjadi dua kali lipat  
-B. Jika sistem baru mengalami kegagalan, tidak ada sistem cadangan yang dapat segera digunakan  
-C. Pegawai harus menginput data dua kali setiap hari  
-D. Waktu peralihan membutuhkan waktu berbulan-bulan  
-
-**Penjelasan:**  
-Karena sistem lama langsung dimatikan, jika sistem baru mengalami kerusakan fatal, organisasi tidak memiliki sistem cadangan untuk melanjutkan operasional.
+Perancangan fisik menerjemahkan model konseptual ke dalam arsitektur teknis konkret yang siap dikodekan oleh programmer dan diimplementasikan pada infrastruktur jaringan tertentu.
 
 ### 23.
-Metode konversi di mana sistem lama dan sistem baru dijalankan secara bersama-sama dalam jangka waktu tertentu untuk memastikan keandalan sistem baru disebut:
+Metode konversi sistem di mana sistem lama langsung dihentikan operasinya secara total dan pada saat yang sama sistem baru langsung diaktifkan sebagai pengganti disebut:
 
-A. Konversi Paralel
-B. Konversi Langsung
-C. Konversi Kilat
-D. Konversi Modul Tunggal  
+A. Konversi Paralel  
+B. Konversi Bertahap (*Phased*)  
+C. Konversi Langsung (*Direct Cutover*)  
+D. Konversi Percontohan (*Pilot*)  
 
 **Penjelasan:**  
-Konversi paralel menjalankan sistem lama dan sistem baru secara berdampingan sampai sistem baru terbukti stabil dan datanya cocok.
+Konversi langsung (direct cutover/big bang) menghentikan sistem lama seketika dan langsung beralih ke sistem baru pada satu titik waktu yang ditentukan.
 
 ### 24.
-Alasan utama perusahaan perbankan sering memilih metode Konversi Paralel meskipun biayanya lebih mahal adalah:
+Risiko paling berbahaya dari penerapan metode Konversi Langsung (*Direct Cutover*) adalah:
 
-A. Agar pegawai bisa bekerja lebih santai  
-B. Memberikan keamanan maksimal karena sistem lama tetap berfungsi sebagai cadangan jika sistem baru bermasalah  
-C. Mempercepat masa pensiun komputer lama  
-D. Menghindari pembuatan dokumentasi sistem  
+A. Biaya operasional menjadi dua kali lipat selama berbulan-bulan  
+B. Jika sistem baru mengalami kegagalan fatal pada hari pertama, organisasi tidak memiliki sistem cadangan untuk melanjutkan bisnis  
+C. Staf harus memasukkan data yang sama ke dalam dua komputer berbeda  
+D. Waktu pelatihan pegawai membutuhkan waktu lebih dari satu tahun  
 
 **Penjelasan:**  
-Untuk sistem yang kritis seperti perbankan, konversi paralel adalah yang paling aman karena menjamin transaksi tetap berjalan normal jika sistem baru mengalami gangguan.
+Karena sistem lama langsung dimatikan, jika sistem baru mengalami kerusakan fatal, organisasi tidak memiliki sistem alternatif yang dapat dipakai dan operasional bisnis dapat terhenti total.
 
 ### 25.
-Penerapan sistem baru yang dilakukan secara bertahap bagian demi bagian (misalnya dimulai dari modul inventaris, baru kemudian modul penjualan) disebut:
+Metode konversi sistem di mana sistem lama dan sistem baru dijalankan bersama-sama dalam jangka waktu tertentu untuk membandingkan kecocokan hasil keluaran disebut:
 
-A. Konversi Bertahap
-B. Konversi Langsung  
-C. Konversi Paralel Murni  
-D. Konversi Acak  
+A. Konversi Paralel (*Parallel Conversion*)  
+B. Konversi Langsung (*Direct Cutover*)  
+C. Konversi Kilat  
+D. Konversi Terputus  
 
 **Penjelasan:**  
-Konversi bertahap menerapkan sistem modul per modul sehingga risiko kesalahan dapat diisolasi pada bagian yang sedang diterapkan.
+Konversi paralel mengoperasikan sistem lama dan baru secara berdampingan sampai sistem baru terbukti stabil, akurat, dan dapat dipercaya sepenuhnya.
 
 ### 26.
-Penerapan sistem baru yang diuji coba secara penuh pada satu cabang percontohan terlebih dahulu sebelum diterapkan di seluruh cabang lainnya disebut:
+Alasan utama mengapa institusi perbankan atau rumah sakit sering memilih metode Konversi Paralel meskipun biayanya mahal dan beban kerja pegawai meningkat adalah:
 
-A. Konversi Langsung  
-B. Konversi Percontohan
-C. Konversi Paralel  
-D. Konversi Menyeluruh  
+A. Agar pegawai memiliki waktu luang untuk bersantai  
+B. Memberikan tingkat keamanan operasional tertinggi karena sistem lama tetap siaga sebagai cadangan penuh jika sistem baru bermasalah  
+C. Menghindari kewajiban membayar lisensi perangkat lunak  
+D. Menghilangkan kebutuhan untuk melakukan pencadangan database harian  
 
 **Penjelasan:**  
-Konversi percontohan (pilot) menguji keandalan sistem pada satu lokasi tertentu terlebih dahulu sebelum diterapkan secara massal ke cabang lain.
+Untuk operasi bisnis yang sangat kritis (mission-critical), keamanan data dan kontinuitas layanan jauh lebih berharga daripada biaya operasional ganda selama masa transisi paralel.
 
 ### 27.
-Seorang pengguna menemukan bahwa laporan rekap gaji menghasilkan angka negatif karena ada kesalahan rumus pada program. Tindakan perbaikan terhadap kesalahan ini termasuk pemeliharaan:
+Metode konversi sistem di mana sistem baru diterapkan hanya pada satu bagian kantor cabang tertentu sebagai uji coba operasional sebelum diterapkan ke seluruh cabang lain disebut:
 
-A. Pemeliharaan Korektif
-B. Pemeliharaan Adaptif
-C. Pemeliharaan Perfektif
-D. Pemeliharaan Preventif
+A. Konversi Langsung  
+B. Konversi Paralel  
+C. Konversi Percontohan (*Pilot Conversion*)  
+D. Konversi Bertahap Murni  
 
 **Penjelasan:**  
-Pemeliharaan korektif adalah tindakan untuk memperbaiki kesalahan, cacat logika, atau bug yang ditemukan saat sistem sudah beroperasi.
+Konversi percontohan (pilot) membatasi penerapan awal pada satu unit lokasi percontohan untuk mengidentifikasi dan membenahi masalah sebelum sistem diluncurkan secara nasional.
 
 ### 28.
-Program absensi pegawai disesuaikan karena kantor memasang alat pemindai sidik jari tipe terbaru yang format datanya berbeda. Tindakan penyesuaian ini termasuk pemeliharaan:
+Pengujian perangkat lunak yang dilakukan oleh pemakai akhir (*end-user*) untuk memverifikasi apakah sistem baru sudah benar-benar memenuhi kriteria penerimaan bisnis sebelum diserahterimakan disebut:
 
-A. Pemeliharaan Korektif  
-B. Pemeliharaan Adaptif
-C. Pemeliharaan Darurat  
-D. Pemeliharaan Fisik  
+A. Unit Testing  
+B. User Acceptance Testing (UAT)  
+C. Static Code Analysis  
+D. Stress Testing Kompilasi  
 
 **Penjelasan:**  
-Pemeliharaan adaptif dilakukan untuk menyesuaikan sistem yang berjalan terhadap perubahan lingkungan, seperti hardware baru atau regulasi baru.
+UAT (User Acceptance Testing) adalah tahap pengujian akhir di mana pemakai sesungguhnya memvalidasi fungsi aplikasi terhadap skenario kerja nyata sebelum memberikan persetujuan rilis.
 
 ### 29.
-Penambahan fitur pencarian cepat dan perbaikan tampilan menu agar pemakai lebih nyaman menggunakan aplikasi tergolong jenis pemeliharaan:
+Aktivitas pemeliharaan sistem informasi yang dilakukan untuk memperbaiki bug, kesalahan logika perhitungan, atau galat kueri yang ditemukan pengguna saat sistem beroperasi disebut pemeliharaan:
 
-A. Pemeliharaan Korektif  
-B. Pemeliharaan Adaptif  
-C. Pemeliharaan Perfektif
-D. Pemeliharaan Kerusakan  
+A. Pemeliharaan Adaptif  
+B. Pemeliharaan Korektif (*Corrective Maintenance*)  
+C. Pemeliharaan Perfektif  
+D. Pemeliharaan Preventif  
 
 **Penjelasan:**  
-Pemeliharaan perfektif bertujuan menyempurnakan performa, efisiensi, atau kemudahan pakai sistem tanpa adanya kerusakan fungsional.
+Pemeliharaan korektif berfokus pada diagnosis dan perbaikan bug atau cacat program yang muncul selama masa operasional sistem.
 
 ### 30.
-Melakukan backup rutin dan pembersihan file sementara di database untuk mencegah terjadinya sistem lambat di kemudian hari termasuk pemeliharaan:
+Ketika pemerintah memberlakukan tarif regulasi pajak baru yang mewajibkan penyesuaian modul perhitungan pada sistem kasir perusahaan, jenis pemeliharaan sistem yang dilakukan adalah:
 
 A. Pemeliharaan Korektif  
-B. Pemeliharaan Darurat  
-C. Pemeliharaan Preventif
-D. Pemeliharaan Adaptif  
+B. Pemeliharaan Adaptif (*Adaptive Maintenance*)  
+C. Pemeliharaan Preventif  
+D. Pemeliharaan Manual  
 
 **Penjelasan:**  
-Pemeliharaan preventif merupakan tindakan pencegahan dini agar sistem tidak mengalami kegagalan atau penurunan performa di masa yang akan datang.
+Pemeliharaan adaptif dilakukan untuk menyesuaikan aplikasi terhadap perubahan lingkungan eksternal, seperti perubahan hukum/peraturan, sistem operasi baru, atau standar industri.
 
 ### 31.
-Hak individu untuk menentukan informasi pribadi apa saja tentang dirinya yang boleh dikumpulkan dan dibagikan kepada pihak lain berkaitan dengan isu etika:
+Modifikasi sistem informasi yang bertujuan meningkatkan performa kecepatan respon, memperbaiki efisiensi kode, atau menambahkan fitur baru yang diinginkan pengguna termasuk dalam kategori:
 
-A. Privasi
-B. Akurasi
-C. Properti
-D. Aksesibilitas
+A. Pemeliharaan Perfektif (*Perfective Maintenance*)  
+B. Pemeliharaan Korektif  
+C. Pemeliharaan Adaptif  
+D. Pemeliharaan Darurat  
 
 **Penjelasan:**  
-Privasi berkaitan dengan perlindungan hak individu terhadap kerahasiaan data pribadi dari pengumpulan dan penyebaran tanpa izin.
+Pemeliharaan perfektif bertujuan menyempurnakan performa, kemudahan pakai, atau memperkaya kapabilitas fitur sistem melampaui spesifikasi awal yang disepakati.
 
 ### 32.
-Tanggung jawab pengelola sistem informasi untuk memastikan bahwa data yang tersimpan di dalam sistem benar, tepat, dan tidak keliru berkaitan dengan isu etika:
+Tindakan pemeliharaan yang dilakukan secara proaktif (seperti restrukturisasi basis data, pembersihan berkas log berkala, dan penambalan celah keamanan) guna mencegah timbulnya masalah di masa mendatang disebut:
 
-A. Privasi  
-B. Akurasi
-C. Properti  
-D. Kecepatan  
+A. Pemeliharaan Korektif  
+B. Pemeliharaan Preventif (*Preventive Maintenance*)  
+C. Pemeliharaan Adaptif  
+D. Pemeliharaan Pasca-Bencana  
 
 **Penjelasan:**  
-Akurasi menuntut agar data yang dikumpulkan dan diproses dalam sistem memiliki kebenaran dan ketelitian tinggi sehingga tidak merugikan pihak lain.
+Pemeliharaan preventif adalah tindakan pencegahan dini untuk menjaga stabilitas dan memperpanjang usia pakai sistem sebelum kegagalan operasional benar-benar terjadi.
 
 ### 33.
-Perlindungan terhadap hak cipta pembuat perangkat lunak dan larangan memperbanyak software tanpa lisensi resmi berkaitan dengan isu etika:
+Menurut Richard Mason (1986), empat isu etika utama dalam era teknologi informasi disingkat dengan akronim **PAPA**, yang meliputi:
+
+A. Program, Aplikasi, Prosesor, dan Antivirus  
+B. Privasi (*Privacy*), Akurasi (*Accuracy*), Properti (*Property*), dan Aksesibilitas (*Accessibility*)  
+C. Protokol, Alamat, Port, dan Autentikasi  
+D. Pemasaran, Akuntansi, Produksi, dan Administrasi  
+
+**Penjelasan:**  
+Kerangka etika era informasi Mason (1986) terdiri dari empat pilar fundamental: Privacy (privasi data), Accuracy (keakuratan informasi), Property (hak kepemilikan intelektual), dan Accessibility (hak akses informasi).
+
+### 34.
+Hak setiap individu untuk menentukan data pribadi apa saja tentang dirinya yang boleh dikumpulkan, disimpan, dan dibagikan kepada pihak lain berkaitan erat dengan isu etika:
+
+A. Privasi (*Privacy*)  
+B. Akurasi (*Accuracy*)  
+C. Properti (*Property*)  
+D. Aksesibilitas (*Accessibility*)  
+
+**Penjelasan:**  
+Isu privasi menyangkut perlindungan informasi pribadi seseorang agar tidak disalahgunakan, disadap, atau disebarluaskan tanpa persetujuan eksplisit yang bersangkutan.
+
+### 35.
+Tanggung jawab pihak pengelola sistem informasi untuk menjamin bahwa data nilai akademik atau saldo tabungan nasabah tidak mengandung kesalahan dan valid mencerminkan kondisi sebenarnya termasuk dalam isu etika:
+
+A. Privasi  
+B. Akurasi (*Accuracy*)  
+C. Properti  
+D. Kecepatan Transmisi  
+
+**Penjelasan:**  
+Isu akurasi menekankan kewajiban pengelola sistem untuk memastikan kebenaran, presisi, dan integritas data agar tidak menimbulkan kerugian bagi pihak mana pun akibat informasi yang salah.
+
+### 36.
+Perlindungan hukum atas hak cipta perangkat lunak (*software copyright*), larangan pembajakan program, dan hak kepemilikan atas kode sumber aplikasi diatur di bawah pilar etika:
 
 A. Privasi  
 B. Akurasi  
-C. Properti
+C. Properti (*Property*)  
 D. Aksesibilitas  
 
 **Penjelasan:**  
-Properti berkaitan dengan kepemilikan hak cipta atas perangkat lunak, data, dan aset digital (Hak Kekayaan Intelektual).
+Isu properti berkaitan dengan hak kekayaan intelektual (HAKI), hak cipta pencipta software, dan hak kepemilikan aset digital yang bernilai ekonomis.
 
-### 34.
-Hak dan kemudahan bagi pengguna yang berhak untuk memperoleh informasi yang tersimpan dalam sistem informasi berkaitan dengan isu etika:
+### 37.
+Aturan yang mengatur siapa saja pihak yang berwenang untuk membaca atau mengubah suatu data rahasia dalam basis data perusahaan, serta hak individu untuk memperoleh informasi yang adil, berkaitan dengan isu:
 
 A. Privasi  
 B. Akurasi  
 C. Properti  
-D. Aksesibilitas
+D. Aksesibilitas (*Accessibility*)  
 
 **Penjelasan:**  
-Aksesibilitas mengatur hak dan kemudahan bagi orang atau organisasi yang berwenang untuk mengakses data dan informasi.
+Aksesibilitas mengatur hak aksesibilitas informasi: siapa yang memiliki otoritas untuk mengakses data tertentu dan syarat apa yang harus dipenuhi untuk memperoleh informasi tersebut.
 
-### 35.
-Contoh tindakan kontrol administratif dalam pengamanan sistem informasi di perusahaan adalah:
+### 38.
+Dalam manajemen keamanan sistem informasi, tindakan menerbitkan Standar Operasional Prosedur (SOP), kebijakan kata sandi formal, dan pemisahan tugas (*separation of duties*) dikelompokkan sebagai:
 
-A. Memasang kabel jaringan anti-tikus  
-B. Menerbitkan Standar Operasional Prosedur dan kebijakan password resmi
-C. Menempatkan server di tempat ber-AC  
-D. Memasang kipas pendingin pada komputer kasir  
-
-**Penjelasan:**  
-Kontrol administratif berupa pedoman organisasi, kebijakan formal tertulis, SOP, dan aturan kerja untuk menjamin keamanan sistem.
-
----
-
-## Soal Centang Lebih Dari Satu
-
-### 36. Pilih semua yang termasuk aspek pertimbangan kelayakan pengembangan sistem informasi.
-
-Dalam studi kelayakan (Feasibility Study), analisis kelayakan sistem informasi mencakup berbagai aspek penting. Yang termasuk ke dalam aspek pertimbangan kelayakan adalah:
-
-[ ] Aspek Teknologi
-[ ] Aspek Ekonomi
-[ ] Aspek Organisasi atau Operasional
-[ ] Aspek Jadwal
-[ ] Aspek Keberuntungan Zodiak
+A. Kontrol Teknis  
+B. Kontrol Administratif / Manajerial  
+C. Kontrol Fisik  
+D. Kontrol Mekanik  
 
 **Penjelasan:**  
-Studi kelayakan mencakup aspek teknologi, ekonomi, operasional/organisasi, jadwal, serta hukum dan etika.
+Kontrol administratif berupa pedoman organisasi, kebijakan tertulis manajemen, regulasi kepatuhan, dan prosedur operasional untuk mengarahkan perilaku pegawai dalam menjaga keamanan.
 
-### 37. Pilih semua yang termasuk manfaat dilakukannya Studi Kelayakan.
+### 39.
+Penerapan pintu ruang server dengan kunci biometrik sidik jari, pemasangan kamera CCTV, dan penyediaan tabung pemadam api khusus gas halon/FM-200 termasuk dalam kategori:
 
-Sebelum proyek sistem informasi diputuskan untuk dikerjakan, studi kelayakan memberikan manfaat nyata bagi organisasi, yaitu:
-
-[ ] Menghindari pemborosan biaya untuk proyek yang tidak realistis  
-[ ] Mengetahui kendala teknis dan teknologi sejak dini  
-[ ] Memastikan proyek tidak melanggar hukum dan aturan yang berlaku  
-[ ] Menghapus kebutuhan pengujian sistem di masa depan  
-[ ] Membantu manajemen menentukan prioritas proyek sistem informasi  
+A. Kontrol Administratif  
+B. Kontrol Fisik (*Physical Controls*)  
+C. Kontrol Perangkat Lunak  
+D. Kontrol Algoritma  
 
 **Penjelasan:**  
-Studi kelayakan membantu manajemen menilai kelayakan proyek, mencegah pemborosan, dan mengenali kendala sejak awal, namun tidak menghilangkan tahap pengujian sistem.
+Kontrol fisik melindungi aset fasilitas komputasi, perangkat keras server, dan kabel jaringan dari akses fisik ilegal, pencurian, atau bencana fisik di lokasi gedung.
 
-### 38. Pilih semua keuntungan dari pengadaan sistem dengan cara membuat sendiri (In-House).
+### 40.
+Mekanisme keamanan jaringan yang bertindak sebagai dinding penyaring paket data untuk memeriksa dan memblokir lalu lintas komunikasi data yang mencurigakan antara internet dengan jaringan internal kantor disebut:
 
-Ketika organisasi memutuskan membangun sistem informasinya sendiri menggunakan tim internal, keuntungan yang didapatkan antara lain:
-
-[ ] Sistem dapat disesuaikan tepat dengan kebutuhan pemakai  
-[ ] Integrasi dengan sistem yang ada lebih mudah dikontrol  
-[ ] Dapat menjadi keunggulan kompetitif bagi perusahaan
-[ ] Dijamin tidak memerlukan waktu pembuatan sama sekali  
-[ ] Perusahaan memegang kendali penuh atas sistem tersebut  
+A. Uninterruptible Power Supply (UPS)  
+B. Firewall  
+C. Network Interface Card (NIC)  
+D. Kabel Coaxial  
 
 **Penjelasan:**  
-Membuat sendiri memberikan kustomisasi penuh, kontrol integrasi, dan keunggulan kompetitif, meskipun membutuhkan waktu pengembangan yang cukup lama.
+Firewall memeriksa paket data yang keluar-masuk jaringan berdasarkan aturan keamanan tertentu dan memblokir koneksi yang berpotensi membahayakan sistem internal.
 
-### 39. Pilih semua keuntungan dari pengadaan sistem dengan cara membeli perangkat lunak paket (COTS).
+### 41.
+Metode pengamanan data dengan cara mengubah teks biasa (*plaintext*) menjadi teks tersandi (*ciphertext*) yang tidak dapat dibaca tanpa kunci dekripsi yang sah disebut:
 
-Membeli paket perangkat lunak jadi yang ada di pasaran memiliki berbagai kelebihan, di antaranya:
-
-[ ] Waktu penerapan sistem jauh lebih singkat  
-[ ] Program perangkat lunak umumnya sudah teruji di pasaran  
-[ ] Biaya pengadaan awal relatif lebih terukur dan pasti  
-[ ] Perusahaan otomatis memiliki hak paten software tersebut  
-[ ] Pemakai dapat memilih paket yang paling mendekati kebutuhannya  
+A. Kompresi Data  
+B. Enkripsi (*Encryption*)  
+C. Normalisasi Database  
+D. Partisi Harddisk  
 
 **Penjelasan:**  
-Membeli paket COTS unggul dalam kecepatan penerapan, stabilitas program yang sudah teruji, dan kepastian biaya awal, namun hak paten/source code tetap milik vendor.
+Enkripsi mengacak pesan data menggunakan algoritma matematis dan kunci kriptografi sehingga kerahasiaan data tetap terjaga meskipun data berhasil disadap pihak asing.
 
-### 40. Pilih semua alasan perusahaan memilih melakukan Outsourcing sistem informasi.
+### 42.
+Dalam kriptografi kunci publik (asimetris), pasangan kunci yang digunakan untuk mengamankan komunikasi data terdiri dari:
 
-Banyak organisasi memilih menyerahkan pengelolaan TI kepada vendor outsourcing dengan alasan:
-
-[ ] Agar perusahaan dapat lebih fokus pada bisnis utamanya  
-[ ] Menghemat biaya investasi infrastruktur dan pegawai spesialis TI  
-[ ] Memanfaatkan keahlian teknis pihak ketiga yang sudah berpengalaman  
-[ ] Ingin membagikan rahasia dagang kepada semua kompetitor  
-[ ] Mempercepat waktu penyelesaian pekerjaan proyek TI  
+A. Kunci Master dan Kunci Cadangan  
+B. Kunci Publik (*Public Key*) dan Kunci Privat (*Private Key*)  
+C. Kunci Pintu dan Kunci Gembok  
+D. Kunci Huruf dan Kunci Angka  
 
 **Penjelasan:**  
-Outsourcing dipilih agar perusahaan fokus pada core business, efisiensi biaya SDM, dan memanfaatkan keahlian pihak luar secara cepat.
+Kriptografi asimetris menggunakan dua kunci berpasangan: kunci publik yang disebarkan luas untuk enkripsi data, dan kunci privat yang dirahasiakan oleh pemilik untuk mendekripsi data.
 
-### 41. Pilih semua sasaran utama dari penerapan metode Prototipe.
+### 43.
+Rencana tertulis yang komprehensif yang memuat langkah-langkah darurat untuk memulihkan kembali operasi sistem informasi dan fasilitas komputasi jika terjadi bencana besar (seperti gempa atau kebakaran) disebut:
 
-Metode prototipe dirancang dengan sasaran-sasaran khusus dalam pengembangan sistem, yaitu:
-
-[ ] Mempercepat waktu pemakai melihat bentuk nyata dari sistem  
-[ ] Mendapatkan umpan balik awal dari pemakai
-[ ] Membantu saat kebutuhan pemakai sulit didefinisikan secara tertulis  
-[ ] Menghilangkan peran programmer dalam pembuatan aplikasi  
-[ ] Memudahkan komunikasi antara pengembang dan pemakai  
+A. Business Proposal  
+B. Disaster Recovery Plan (DRP)  
+C. Master Production Schedule  
+D. Software Requirement Document  
 
 **Penjelasan:**  
-Sasaran prototipe adalah mengurangi waktu tunggu pemakai, memberikan feedback cepat, dan menjembatani komunikasi saat kebutuhan sulit didefinisikan.
+Disaster Recovery Plan (DRP) merinci prosedur evakuasi data, pemulihan server di lokasi cadangan (*hot/cold site*), dan langkah kontinuitas bisnis agar operasional TI segera pulih pasca-bencana.
 
-### 42. Pilih semua karakteristik dari Konversi Langsung (Direct Cutover).
+### 44.
+Konsep keselarasan strategik (*Strategic Alignment*) dalam sistem informasi menurut Henderson, Venkatraman, dan Jerry Luftman menekankan pentingnya:
 
-Peralihan sistem menggunakan metode konversi langsung memiliki ciri-ciri:
-
-[ ] Sistem lama langsung dimatikan saat sistem baru mulai dipakai  
-[ ] Memiliki risiko kegagalan yang paling tinggi  
-[ ] Biaya operasional relatif murah karena tidak menjalankan dua sistem sekaligus  
-[ ] Sangat cocok untuk sistem bank yang mengolah uang jutaan nasabah  
-[ ] Proses peralihannya berlangsung cepat dalam satu waktu tertentu  
+A. Mengganti semua komputer kantor dengan merek yang sama persis  
+B. Menyelaraskan strategi bisnis organisasi dengan strategi dan kapabilitas teknologi informasi agar saling mendukung  
+C. Menyerahkan seluruh keputusan bisnis kepada teknisi komputer  
+D. Menghilangkan peran dewan direksi dalam penentuan arah perusahaan  
 
 **Penjelasan:**  
-Konversi langsung cepat dan murah karena tidak ada sistem ganda, tetapi memiliki risiko sangat tinggi sehingga dihindari untuk sistem perbankan berisiko tinggi.
+Keselarasan strategik adalah integrasi harmonis antara visi dan strategi bisnis perusahaan dengan infrastruktur dan inisiatif SI/TI guna mencapai keunggulan kompetitif organisasi.
 
-### 43. Pilih semua karakteristik dari Konversi Paralel (Parallel Conversion).
+### 45.
+Menurut model kematangan keselarasan Jerry Luftman, salah satu dari enam kriteria utama yang menunjukkan bahwa bisnis dan TI telah selaras dengan sangat baik adalah adanya:
 
-Menjalankan sistem lama dan sistem baru secara bersamaan memiliki karakteristik:
-
-[ ] Sistem lama dan baru dijalankan bersamaan untuk beberapa waktu  
-[ ] Memberikan rasa aman paling tinggi jika terjadi masalah pada sistem baru  
-[ ] Beban kerja pegawai menjadi dua kali lipat karena menginput data ganda  
-[ ] Biaya operasional menjadi lebih mahal selama masa paralel  
-[ ] Data sistem lama langsung dihapus pada hari pertama  
+A. Bahasa sandi rahasia antar pegawai  
+B. Kemitraan (*Partnership*) dan kepercayaan yang kokoh antara manajer bisnis dan pimpinan TI  
+C. Larangan mengadakan rapat kerja antara bagian bisnis dan bagian TI  
+D. Penghapusan anggaran pembelian perangkat lunak  
 
 **Penjelasan:**  
-Konversi paralel memberikan keamanan maksimal karena sistem lama tetap aktif, namun menuntut biaya ganda dan beban kerja input staf dua kali lipat.
+Luftman merumuskan 6 kriteria kematangan keselarasan: Komunikasi, Pengukuran Nilai/Metrik, Tata Kelola (*Governance*), Kemitraan (*Partnership*), Lingkup Arsitektur, dan Keterampilan SDM.
 
-### 44. Pilih semua jenis pemeliharaan sistem informasi.
+### 46.
+Kondisi di mana sistem informasi berhasil dibangun dan beroperasi, tetapi fungsi-fungsinya tidak digunakan secara optimal oleh pegawai karena penolakan budaya kerja atau kurangnya pelatihan termasuk jenis kegagalan:
 
-Dalam siklus hidup sistem informasi, terdapat empat jenis pemeliharaan utama, yaitu:
-
-[ ] Pemeliharaan Korektif
-[ ] Pemeliharaan Adaptif
-[ ] Pemeliharaan Perfektif
-[ ] Pemeliharaan Preventif
-[ ] Pemeliharaan Otomatisasi Absolut  
+A. Kegagalan Total  
+B. Kegagalan Parsial / Kegagalan Organisasi  
+C. Kegagalan Perangkat Keras Murni  
+D. Keberhasilan Mutlak  
 
 **Penjelasan:**  
-Empat kategori pemeliharaan sistem informasi adalah korektif, adaptif, perfektif, dan preventif.
+Kegagalan parsial/organisasi terjadi ketika sistem secara teknis menyala, namun tidak mampu memberikan dampak nilai bisnis yang diharapkan karena resistensi pemakai atau kelemahan adopsi organisasi.
 
-### 45. Pilih semua contoh kegiatan yang termasuk Pemeliharaan Korektif.
+### 47.
+Dalam perencanaan sistem informasi strategis, Analisis SWOT digunakan oleh pimpinan organisasi untuk:
 
-Pemeliharaan korektif menangani perbaikan terhadap kesalahan operasional sistem. Contoh kegiatannya adalah:
-
-[ ] Memperbaiki bug salah hitung total belanja di kasir  
-[ ] Mengatasi sistem yang mendadak menutup sendiri saat klik tombol cetak
-[ ] Mengganti warna latar belakang aplikasi agar tampak lebih segar  
-[ ] Memperbaiki data nama mahasiswa yang terpotong karena ukuran kolom tabel kurang panjang  
-[ ] Membeli gedung kantor baru untuk server  
+A. Mengukur tegangan listrik ruangan server  
+B. Mengidentifikasi Kekuatan (*Strengths*), Kelemahan (*Weaknesses*), Peluang (*Opportunities*), dan Ancaman (*Threats*) bagi penerapan SI/TI  
+C. Menghitung jumlah huruf pada proposal proyek  
+D. Memprogram kode CSS tampilan website  
 
 **Penjelasan:**  
-Pemeliharaan korektif berfokus pada perbaikan error, bug, dan kegagalan fungsi aplikasi yang sedang beroperasi.
+Analisis SWOT mengevaluasi faktor internal (kekuatan dan kelemahan kapabilitas TI) serta faktor eksternal (peluang pasar dan ancaman kompetitor) sebagai dasar perumusan strategi SI/TI.
 
-### 46. Pilih semua contoh kegiatan yang termasuk Pemeliharaan Adaptif.
+### 48.
+Faktor Penentu Keberhasilan (*Critical Success Factor* / CSF) dalam perencanaan sistem informasi bisnis didefinisikan sebagai:
 
-Pemeliharaan adaptif dilakukan saat sistem harus menyesuaikan diri dengan perubahan lingkungan luar. Contoh kegiatannya adalah:
-
-[ ] Menyesuaikan sistem faktur karena adanya aturan pajak baru dari pemerintah  
-[ ] Menyesuaikan program agar bisa berjalan di sistem operasi Windows terbaru  
-[ ] Mengubah format kirim data karena pihak bank rekanan memperbarui sistem mereka  
-[ ] Menghapus seluruh database karena salah pencet tombol  
-[ ] Menyesuaikan aplikasi agar kompatibel dengan printer barcode model baru  
+A. Jumlah kabel jaringan yang terpasang di langit-langit kantor  
+B. Beberapa area kunci operasional yang mutlak harus berjalan dengan sangat baik dan didukung SI/TI agar organisasi dapat memenangkan persaingan  
+C. Harga lisensi perangkat lunak yang paling mahal di pasaran  
+D. Kecepatan printer dalam mencetak struk transaksi  
 
 **Penjelasan:**  
-Pemeliharaan adaptif merespon perubahan faktor eksternal seperti regulasi baru, sistem operasi baru, API mitra, dan perangkat keras baru.
+CSF adalah sejumlah kecil faktor krusial di mana keberhasilan dalam bidang tersebut mutlak diperlukan agar organisasi dapat mencapai misi bisnisnya (misal: pelacakan paket akurat bagi bisnis kurir ekspres).
 
-### 47. Pilih semua 4 isu etika utama dalam kerangka kerja PAPA (Richard Mason).
+### 49.
+Dalam konsep Analisis Rantai Nilai (*Value Chain*) Michael Porter, aktivitas yang berhubungan langsung dengan penerimaan, penyimpanan, dan pengelolaan bahan baku sebelum diproduksi dikelompokkan ke dalam Aktivitas Utama (*Primary Activity*) bagian:
 
-Richard Mason merumuskan empat isu moral utama dalam pemanfaatan sistem informasi yang dikenal sebagai PAPA, yaitu:
-
-[ ] Privasi
-[ ] Akurasi
-[ ] Properti
-[ ] Aksesibilitas
-[ ] Popularitas
+A. Logistik Masuk (*Inbound Logistics*)  
+B. Operasi Pabrik (*Operations*)  
+C. Logistik Keluar (*Outbound Logistics*)  
+D. Pemasaran dan Penjualan (*Marketing & Sales*)  
 
 **Penjelasan:**  
-Empat pilar etika informasi menurut Mason adalah Privacy, Accuracy, Property, dan Accessibility.
+Inbound logistics mencakup aktivitas penerimaan, pergudangan, dan distribusi bahan mentah masuk ke dalam perusahaan sebelum diproses lebih lanjut di bagian operasional.
 
-### 48. Pilih semua yang termasuk ancaman terhadap keamanan sistem informasi.
+### 50.
+Komite pimpinan dalam organisasi yang bertugas memberikan arahan strategis, mengesahkan kebijakan TI, dan menentukan prioritas alokasi investasi proyek sistem informasi disebut:
 
-Sistem informasi perusahaan rentan terhadap berbagai potensi ancaman, di antaranya:
-
-[ ] Serangan virus dan malware  
-[ ] Bencana alam seperti banjir atau kebakaran di ruang server  
-[ ] Kesalahan operasional oleh manusia
-[ ] Pencurian password melalui email tipuan
-[ ] Pembersihan debu pada casing komputer secara rutin  
+A. Tim Programmer Lepas  
+B. Dewan Pengarah Sistem Informasi (*Steering Committee*)  
+C. Teknisi Komputer Keliling  
+D. Staf Resepsionis Kantor  
 
 **Penjelasan:**  
-Ancaman terhadap sistem informasi mencakup kejahatan siber (malware, phishing), bencana fisik (banjir, kebakaran), dan kelalaian manusia.
-
-### 49. Pilih semua tindakan yang termasuk Kontrol Pengamanan Fisik ruang server.
-
-Untuk melindungi perangkat keras komputer dan data penting dari bahaya fisik, kontrol yang tepat meliputi:
-
-[ ] Memasang sistem kunci pintu ruang server digital
-[ ] Memasang sistem pendingin udara yang memadai
-[ ] Memasang alat pemadam kebakaran gas khusus di ruang server  
-[ ] Membagikan kunci ruang server kepada semua pengunjung umum  
-[ ] Menyiapkan genset atau pasokan listrik darurat
-
-**Penjelasan:**  
-Kontrol fisik mencakup pembatasan akses pintu, pendingin ruangan, pemadam kebakaran khusus, serta penyediaan daya listrik cadangan.
-
-### 50. Pilih semua hal penting yang perlu disiapkan sebelum melakukan konversi ke sistem baru.
-
-Agar penerapan sistem informasi baru berjalan sukses dan tidak menimbulkan kekacauan operasional, persiapan yang harus dilakukan adalah:
-
-[ ] Melakukan migrasi dan pembersihan data dari sistem lama ke sistem baru  
-[ ] Memberikan pelatihan bagi para pegawai yang akan mengoperasikan sistem baru  
-[ ] Menyiapkan prosedur darurat jika sistem baru mengalami gangguan  
-[ ] Memastikan pengujian penerimaan pengguna sudah disetujui
-[ ] Merahasiakan peluncuran sistem baru dari para pengguna  
-
-**Penjelasan:**  
-Persiapan implementasi mencakup migrasi data, pelatihan staf, rencana kontinjensi (darurat), dan penyelesaian pengujian penerimaan pengguna (UAT).
+Dewan Pengarah (Steering Committee) yang beranggotakan para eksekutif lintas fungsi bertugas mengarahkan strategi TI, menyetujui anggaran investasi, dan memastikan inisiatif SI/TI selaras dengan tujuan bisnis perusahaan.

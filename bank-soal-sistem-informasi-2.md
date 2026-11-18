@@ -1,10 +1,10 @@
-# UTS Sistem Informasi II Semester VII
+# UTS Sistem Informasi II Semester V
 
 **Program Studi:** Teknik Informatika  
 **Fakultas:** Teknik Elektro dan Informatika  
 **Universitas:** Universitas Surakarta  
-**Mata Kuliah:** UTS Sistem Informasi II Semester VII  
-**Target:** Mahasiswa Semester VII  
+**Mata Kuliah:** UTS Sistem Informasi II Semester V  
+**Target:** Mahasiswa Semester V  
 
 ## Petunjuk Umum
 
