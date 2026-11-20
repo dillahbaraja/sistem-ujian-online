@@ -3,7 +3,7 @@
 **Program Studi:** Teknik Informatika  
 **Fakultas:** Teknik Elektro dan Informatika  
 **Universitas:** Universitas Surakarta  
-**Mata Kuliah:** Pengantar Informatika  
+**Mata Kuliah:** UAS Pengantar Informatika Semester I
 **Target:** Mahasiswa Semester I  
 
 ## Petunjuk Umum

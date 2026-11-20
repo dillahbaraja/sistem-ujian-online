@@ -48,11 +48,18 @@ function highlightJava(code) {
   });
 }
 
-function renderTextWithInlineCode(text) {
-  const parts = text.split('`');
+function renderTextWithInlineMarkdown(text) {
+  const parts = text.split(/(\*\*[^*\n]+\*\*|\*[^*\n]+\*|`[^`\n]+`)/g);
+
   return parts.map((part, index) => {
-    if (index % 2 === 1) {
-      return <code key={index} className="inline-code">{part}</code>;
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith('*') && part.endsWith('*')) {
+      return <em key={index}>{part.slice(1, -1)}</em>;
+    }
+    if (part.startsWith('`') && part.endsWith('`')) {
+      return <code key={index} className="inline-code">{part.slice(1, -1)}</code>;
     }
     return part;
   });
@@ -86,7 +93,7 @@ function RichText({ text }) {
 
           const lines = trimmedPart.split('\n');
           return lines.map((line, lineIndex) => {
-            const content = renderTextWithInlineCode(line);
+            const content = renderTextWithInlineMarkdown(line);
             return (
               <span key={`${index}-${lineIndex}`} className="text-line">
                 {content}
